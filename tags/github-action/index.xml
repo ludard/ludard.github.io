@@ -5,11 +5,4 @@
 &lt;li>&lt;code>ludard.github.io&lt;/code> 公有仓库，源码仓库编译生成好的博客网站&lt;/li>
 &lt;li>&lt;code>comments-for-blog&lt;/code> 博客的评论系统&lt;/li>
 &lt;/ol>
-&lt;p>这样将网站的源码和内容进行了公私分离，既保护了源码的私密性，又保证了博客内容的简洁性。&lt;/p>
-&lt;p>仓库调用顺序和关系：&lt;/p>
-&lt;ol>
-&lt;li>本地代码调试好了之后提交到 &lt;code>hugo-blog-code&lt;/code> 私有仓库，保证源码不外泄。&lt;/li>
-&lt;li>&lt;code>hugo-blog-code&lt;/code> 仓库配置 &lt;code>Github Action Workflow&lt;/code> 生成并编译成网站，然后发布到 &lt;code>ludard.github.io&lt;/code> 公有仓库&lt;/li>
-&lt;li>&lt;code>ludard.github.io&lt;/code> 仅存放博客内容，负责对外展示和访问&lt;/li>
-&lt;li>&lt;code>comments-for-blog&lt;/code> 仓库存储用户评论，和 &lt;code>ludard.github.io&lt;/code> 仓库相绑定。&lt;/li>
-&lt;/ol></description></item></channel></rss>
+&lt;p>这样将网站的源码和内容进行了公私分离，既保护了源码的私密性，又保证了博客内容的简洁性。&lt;/p></description></item></channel></rss>
