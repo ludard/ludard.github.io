@@ -1,0 +1,889 @@
+<!doctype html><html lang=zh itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><title>「Hugo 博客搭建」1.搭建本地运行环境 - 卢达的技术博客 - 专注于C#|Go|DevOps|运维开发</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,user-scalable=yes"><meta name=MobileOptimized content="width"><meta name=HandheldFriendly content="true"><meta name=applicable-device content="pc,mobile"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=mobile-web-app-capable content="yes"><meta name=author content="卢达"><meta name=description content="卢达的技术博客，一步步搭建Hugo博客。"><meta name=keywords content="hugo,博客搭建,blog,github,vercel"><meta name=generator content="Hugo 0.104.0"><link rel=canonical href=http://ludard.com/post/tech/create-blog-step-by-step-1/><link rel=icon href=/favicon.ico><link rel=stylesheet href=/sass/jane.min.6aa088348d86326ca4be4205ae9973752a42b2e758c2f5f879a69172441859c9.css integrity="sha256-aqCINI2GMmykvkIFrplzdSpCsudYwvX4eaaRckQYWck=" media=screen crossorigin=anonymous><link rel=stylesheet href=/css/revise-style.css><link rel=stylesheet href=/css/manni-code-syntax.css><meta property="og:title" content="「Hugo 博客搭建」1.搭建本地运行环境"><meta property="og:description" content="卢达的技术博客，一步步搭建Hugo博客。"><meta property="og:type" content="article"><meta property="og:url" content="http://ludard.com/post/tech/create-blog-step-by-step-1/"><meta property="article:section" content="post"><meta property="article:published_time" content="2022-09-13T11:57:37+08:00"><meta property="article:modified_time" content="2022-09-13T11:57:37+08:00"><meta itemprop=name content="「Hugo 博客搭建」1.搭建本地运行环境"><meta itemprop=description content="卢达的技术博客，一步步搭建Hugo博客。"><meta itemprop=datePublished content="2022-09-13T11:57:37+08:00"><meta itemprop=dateModified content="2022-09-13T11:57:37+08:00"><meta itemprop=wordCount content="6989"><meta itemprop=keywords content="博客搭建,Hugo,"><meta name=twitter:card content="summary"><meta name=twitter:title content="「Hugo 博客搭建」1.搭建本地运行环境"><meta name=twitter:description content="卢达的技术博客，一步步搭建Hugo博客。"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>卢达的博客</a></div><div class=mobile-navbar-icon><span></span>
+<span></span>
+<span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><li class=mobile-menu-item><a class=menu-item-link href=http://ludard.com/>主页</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://ludard.com/post/>文章列表</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://ludard.com/tags/>标签</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://ludard.com/categories/>分类</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://ludard.com/about/>关于</a></li></ul></nav><link rel=stylesheet href=/lib/photoswipe/photoswipe.min.css><link rel=stylesheet href=/lib/photoswipe/default-skin/default-skin.min.css><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header id=header class="header container"><div class=logo-wrapper><a href=/ class=logo><img src=/image/ludard_logo.png style=vertical-align:text-bottom>
+卢达的博客</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=http://ludard.com/>主页</a></li><li class=menu-item><a class=menu-item-link href=http://ludard.com/post/>文章列表</a></li><li class=menu-item><a class=menu-item-link href=http://ludard.com/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=http://ludard.com/categories/>分类</a></li><li class=menu-item><a class=menu-item-link href=http://ludard.com/about/>关于</a></li></ul></nav></header><div id=mobile-panel><main id=main class="main bg-llight wallpaper"><div class=content-wrapper><div id=content class="content container"><article class="post bg-white"><header class=post-header><h1 class=post-title>「Hugo 博客搭建」1.搭建本地运行环境</h1><div class=post-meta><time datetime=2022-09-13 class=post-time>2022-09-13</time><div class=post-category><a href=http://ludard.com/categories/%E6%8A%80%E6%9C%AF/>技术</a></div><span id=busuanzi_container_page_pv>| 阅读 <span id=busuanzi_value_page_pv></span></span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#背景>背景</a></li><li><a href=#技术框架>技术框架</a></li><li><a href=#准备环境>准备环境</a></li><li><a href=#开始搭建hugo博客>开始搭建Hugo博客</a><ul><li><a href=#1-了解-hugo>1. 了解 Hugo</a></li><li><a href=#2-下载配置-hugo>2. 下载配置 Hugo</a></li><li><a href=#3-创建博客网站>3. 创建博客网站</a></li><li><a href=#4-下载博客主题>4. 下载博客主题</a></li><li><a href=#5-设置博客主题>5. 设置博客主题</a></li><li><a href=#6-创建文章>6. 创建文章</a></li><li><a href=#7-启动-hugo-博客>7. 启动 hugo 博客</a></li><li><a href=#8-博客定制>8. 博客定制</a></li><li><a href=#9-hugo-常用命令>9. Hugo 常用命令</a></li><li><a href=#10-生成网站>10. 生成网站</a></li></ul></li><li><a href=#参考资源>参考资源</a></li></ul></nav></div></div><div class=post-content><h2 id=背景>背景</h2><p>好记性不如烂笔头，先前好多技术攻关后没有将过程记录下来，回想起来特别可惜。栽一棵树最好的时间是十年前，其次是现在。现在就把博客搭建起来，为以后的一些攻关技术和思考备忘一下，给回忆增加些内容。</p><h2 id=技术框架>技术框架</h2><p>Windows + Hugo + Github Pages + Vercel</p><h2 id=准备环境>准备环境</h2><ul><li>Windows 10+ 以上版本</li><li>Hugo extended windows/amd64 版本，扩展版本解决了很多系统问题</li><li><code>Git bash</code> 执行 hugo命令、下载主题、上传源码到Github</li><li>本地已安装好 golang 环境</li><li>已创建好本地和 Github 的密钥连接</li></ul><h2 id=开始搭建hugo博客>开始搭建Hugo博客</h2><h3 id=1-了解-hugo>1. 了解 Hugo</h3><p>查看官方文档 <a href=https://gohugo.io/getting-started/>Hugo Official Docs</a> 或 <a href=https://www.gohugo.org/>中文文档</a> 获取帮助手册</p><p><a href=https://skyao.io/learning-hugo/docs.html>Hugo学习笔记</a></p><p><a href=https://www.zhihu.com/question/266175192>有哪些好看的Hugo主题？</a></p><p><a href=https://hugo.aiaide.com/><em>hugo中文帮助文档</em></a></p><p><img src=/image/2022/09/13_01_started.png alt=started></p><h3 id=2-下载配置-hugo>2. 下载配置 Hugo</h3><p>从 <a href=https://github.com/gohugoio/hugo/releases>Hugo Releases</a> 直接下载安装适合的版本。我创建博客时是2022年9月7日，最新版本是 <code>v0.102.3</code>。下载后解压到安装路径，比如我的安装路径是：<code>C:\Users\Ludard\Programs\hugo</code>。然后将此路径加入到系统环境变量。</p><p><img src=/image/2022/09/13_02_decompressed.png alt=decompressed></p><p><img src=/image/2022/09/13_03_path.png alt=path></p><p>打开命令行，输入命令：<code>hugo version</code>，如果显示版本信息表示已正确配置。</p><blockquote><p>如果输入命令后显示：<code>'hugo' 不是内部或外部命令，也不是可运行的程序或批处理文件。</code> 应该是没有加入到系统环境变量或者需要重启计算机。</p></blockquote><p><img src=/image/2022/09/13_04_test_hugo.png alt=test_hugo></p><blockquote><p>注意：我第一次创建网站后删除网站目录，然后再启动调试时报错：<code>Error: Error building site: TOCSS: failed to transform "sass/jane.scss"</code>。官方的 <a href=https://gohugo.io/troubleshooting/faq/#i-get-tocss--this-feature-is-not-available-in-your-current-hugo-version>解决方案</a> 是使用扩展程序，也就是含有 <code>extend</code> 的程序，比如Windows就是 <code>hugo_extended_0.102.3_Windows-64bit.zip</code>。然后再启动就可以了</p><p><img src=/image/2022/09/13_05_install_error.png alt=install_error></p><p><img src=/image/2022/09/13_05_install_error2.png alt=install_err></p></blockquote><h3 id=3-创建博客网站>3. 创建博客网站</h3><p>打开 <code>Git bash</code> 命令行工具，切换到想到保存网站内容的路径，使用命令：<code>hugo new site myBlog</code> 创建网站。然后就在当前目录创建了一个博客目录。</p><blockquote><p>如果不想切换目录，可以在创建网站时指定绝对路径：<code>hugo new site /path/to/site</code></p></blockquote><p><img src=/image/2022/09/13_06_new_site.png alt=new_site></p><p><img src=/image/2022/09/13_07_site_ls.png alt=site_ls></p><h3 id=4-下载博客主题>4. 下载博客主题</h3><p>我的使用的博客主题是 <a href=https://themes.gohugo.io/themes/hugo-theme-jane/>hugo-theme-jane</a> ，使用下列命令下载主题：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-0-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-1>1</a>
+</span><span class=lnt id=hl-0-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-2>2</a>
+</span><span class=lnt id=hl-0-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-3>3</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>cd</span> myBlog/
+</span></span><span class=line><span class=cl>git init
+</span></span><span class=line><span class=cl>git clone https://github.com/xianmin/hugo-theme-jane.git --depth<span class=o>=</span><span class=m>1</span> themes/jane
+</span></span></code></pre></td></tr></table></div></div><p><img src=/image/2022/09/13_08_hugo_theme.png alt=hugo_theme></p><h3 id=5-设置博客主题>5. 设置博客主题</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-1-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-1>1</a>
+</span><span class=lnt id=hl-1-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-2>2</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>cp -r themes/jane/exampleSite/content ./    <span class=c1>#复制一些示例文本</span>
+</span></span><span class=line><span class=cl>cp themes/jane/exampleSite/config.toml ./   <span class=c1>#复制默认的站点设置</span>
+</span></span></code></pre></td></tr></table></div></div><p><img src=/image/2022/09/13_09_hugo_theme_conf.png alt=hugo_theme_conf></p><h3 id=6-创建文章>6. 创建文章</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-2-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-2-1>1</a>
+</span><span class=lnt id=hl-2-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-2-2>2</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl> hugo new post/test.md    <span class=c1>#创建文章，保存在 content\post 目录下</span>
+</span></span><span class=line><span class=cl> hugo new about.md        <span class=c1>#创建关于页面</span>
+</span></span></code></pre></td></tr></table></div></div><p><img src=/image/2022/09/13_10_hugo_new_post.png alt=hugo_new_post></p><h3 id=7-启动-hugo-博客>7. 启动 hugo 博客</h3><p>使用命令 <code>hugo server</code> 启动博客：</p><p><img src=/image/2022/09/13_11_start_hugo_cmd.png alt=start_hugo_cmd></p><p>如果要显示草稿文章要使用命令 <code>hugo server -D</code> 。</p><p>然后打开浏览器输入地址：<code>http://localhost:1313/</code> 或 <code>http://127.0.0.1:1313/</code> 即可看到博客内容：</p><p><img src=/image/2022/09/13_12_start_hugo_blog.png alt=start_hugo_blog></p><p>如果在启动时报错：<code>failed to transform "sass/jane.scss"</code></p><p>打开目录 <code>C:\Users\Ludard\AppData\Local\Temp\hugo_cache</code> (Ludard为本机用户名)，删除此目录即可</p><h3 id=8-博客定制>8. 博客定制</h3><p>预览博客页面正常表示创建成功，就可以开始配置博客为自己喜欢的样式了。</p><p>修改之前先将博客内容提交到git，方便修改出错回退</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-3-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-1>1</a>
+</span><span class=lnt id=hl-3-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-2>2</a>
+</span><span class=lnt id=hl-3-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-3>3</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git status
+</span></span><span class=line><span class=cl>git add .
+</span></span><span class=line><span class=cl>git commit -m <span class=s1>&#39;init myBlog&#39;</span>
+</span></span></code></pre></td></tr></table></div></div><p><img src=/image/2022/09/13_13_hugo_blog_git.png alt=hugo_blog_git></p><h4 id=博客配置>博客配置</h4><ul><li>默认配置文件 <code>config.toml</code> 位于网站的根目录，按自身需要进行定制。</li><li>可以参考 <code>https://github.com/xianmin/hugo-theme-jane/tree/master/exampleSite</code> 设置，包含了一个示例 <code>config.toml</code> 配置和 <code>full-config.toml</code>配置，还有一些示例文章。将 <code>config.toml</code> 复制到自己的网站根目录，按自身需要进行修改。（修改配置后网站是实时预览的，非常方便。）</li></ul><p>我的博客配置：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-4-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-1>  1</a>
+</span><span class=lnt id=hl-4-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-2>  2</a>
+</span><span class=lnt id=hl-4-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-3>  3</a>
+</span><span class=lnt id=hl-4-4><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-4>  4</a>
+</span><span class=lnt id=hl-4-5><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-5>  5</a>
+</span><span class=lnt id=hl-4-6><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-6>  6</a>
+</span><span class=lnt id=hl-4-7><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-7>  7</a>
+</span><span class=lnt id=hl-4-8><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-8>  8</a>
+</span><span class=lnt id=hl-4-9><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-9>  9</a>
+</span><span class=lnt id=hl-4-10><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-10> 10</a>
+</span><span class=lnt id=hl-4-11><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-11> 11</a>
+</span><span class=lnt id=hl-4-12><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-12> 12</a>
+</span><span class=lnt id=hl-4-13><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-13> 13</a>
+</span><span class=lnt id=hl-4-14><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-14> 14</a>
+</span><span class=lnt id=hl-4-15><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-15> 15</a>
+</span><span class=lnt id=hl-4-16><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-16> 16</a>
+</span><span class=lnt id=hl-4-17><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-17> 17</a>
+</span><span class=lnt id=hl-4-18><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-18> 18</a>
+</span><span class=lnt id=hl-4-19><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-19> 19</a>
+</span><span class=lnt id=hl-4-20><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-20> 20</a>
+</span><span class=lnt id=hl-4-21><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-21> 21</a>
+</span><span class=lnt id=hl-4-22><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-22> 22</a>
+</span><span class=lnt id=hl-4-23><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-23> 23</a>
+</span><span class=lnt id=hl-4-24><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-24> 24</a>
+</span><span class=lnt id=hl-4-25><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-25> 25</a>
+</span><span class=lnt id=hl-4-26><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-26> 26</a>
+</span><span class=lnt id=hl-4-27><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-27> 27</a>
+</span><span class=lnt id=hl-4-28><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-28> 28</a>
+</span><span class=lnt id=hl-4-29><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-29> 29</a>
+</span><span class=lnt id=hl-4-30><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-30> 30</a>
+</span><span class=lnt id=hl-4-31><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-31> 31</a>
+</span><span class=lnt id=hl-4-32><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-32> 32</a>
+</span><span class=lnt id=hl-4-33><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-33> 33</a>
+</span><span class=lnt id=hl-4-34><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-34> 34</a>
+</span><span class=lnt id=hl-4-35><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-35> 35</a>
+</span><span class=lnt id=hl-4-36><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-36> 36</a>
+</span><span class=lnt id=hl-4-37><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-37> 37</a>
+</span><span class=lnt id=hl-4-38><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-38> 38</a>
+</span><span class=lnt id=hl-4-39><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-39> 39</a>
+</span><span class=lnt id=hl-4-40><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-40> 40</a>
+</span><span class=lnt id=hl-4-41><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-41> 41</a>
+</span><span class=lnt id=hl-4-42><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-42> 42</a>
+</span><span class=lnt id=hl-4-43><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-43> 43</a>
+</span><span class=lnt id=hl-4-44><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-44> 44</a>
+</span><span class=lnt id=hl-4-45><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-45> 45</a>
+</span><span class=lnt id=hl-4-46><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-46> 46</a>
+</span><span class=lnt id=hl-4-47><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-47> 47</a>
+</span><span class=lnt id=hl-4-48><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-48> 48</a>
+</span><span class=lnt id=hl-4-49><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-49> 49</a>
+</span><span class=lnt id=hl-4-50><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-50> 50</a>
+</span><span class=lnt id=hl-4-51><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-51> 51</a>
+</span><span class=lnt id=hl-4-52><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-52> 52</a>
+</span><span class=lnt id=hl-4-53><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-53> 53</a>
+</span><span class=lnt id=hl-4-54><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-54> 54</a>
+</span><span class=lnt id=hl-4-55><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-55> 55</a>
+</span><span class=lnt id=hl-4-56><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-56> 56</a>
+</span><span class=lnt id=hl-4-57><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-57> 57</a>
+</span><span class=lnt id=hl-4-58><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-58> 58</a>
+</span><span class=lnt id=hl-4-59><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-59> 59</a>
+</span><span class=lnt id=hl-4-60><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-60> 60</a>
+</span><span class=lnt id=hl-4-61><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-61> 61</a>
+</span><span class=lnt id=hl-4-62><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-62> 62</a>
+</span><span class=lnt id=hl-4-63><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-63> 63</a>
+</span><span class=lnt id=hl-4-64><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-64> 64</a>
+</span><span class=lnt id=hl-4-65><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-65> 65</a>
+</span><span class=lnt id=hl-4-66><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-66> 66</a>
+</span><span class=lnt id=hl-4-67><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-67> 67</a>
+</span><span class=lnt id=hl-4-68><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-68> 68</a>
+</span><span class=lnt id=hl-4-69><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-69> 69</a>
+</span><span class=lnt id=hl-4-70><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-70> 70</a>
+</span><span class=lnt id=hl-4-71><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-71> 71</a>
+</span><span class=lnt id=hl-4-72><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-72> 72</a>
+</span><span class=lnt id=hl-4-73><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-73> 73</a>
+</span><span class=lnt id=hl-4-74><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-74> 74</a>
+</span><span class=lnt id=hl-4-75><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-75> 75</a>
+</span><span class=lnt id=hl-4-76><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-76> 76</a>
+</span><span class=lnt id=hl-4-77><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-77> 77</a>
+</span><span class=lnt id=hl-4-78><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-78> 78</a>
+</span><span class=lnt id=hl-4-79><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-79> 79</a>
+</span><span class=lnt id=hl-4-80><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-80> 80</a>
+</span><span class=lnt id=hl-4-81><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-81> 81</a>
+</span><span class=lnt id=hl-4-82><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-82> 82</a>
+</span><span class=lnt id=hl-4-83><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-83> 83</a>
+</span><span class=lnt id=hl-4-84><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-84> 84</a>
+</span><span class=lnt id=hl-4-85><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-85> 85</a>
+</span><span class=lnt id=hl-4-86><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-86> 86</a>
+</span><span class=lnt id=hl-4-87><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-87> 87</a>
+</span><span class=lnt id=hl-4-88><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-88> 88</a>
+</span><span class=lnt id=hl-4-89><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-89> 89</a>
+</span><span class=lnt id=hl-4-90><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-90> 90</a>
+</span><span class=lnt id=hl-4-91><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-91> 91</a>
+</span><span class=lnt id=hl-4-92><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-92> 92</a>
+</span><span class=lnt id=hl-4-93><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-93> 93</a>
+</span><span class=lnt id=hl-4-94><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-94> 94</a>
+</span><span class=lnt id=hl-4-95><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-95> 95</a>
+</span><span class=lnt id=hl-4-96><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-96> 96</a>
+</span><span class=lnt id=hl-4-97><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-97> 97</a>
+</span><span class=lnt id=hl-4-98><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-98> 98</a>
+</span><span class=lnt id=hl-4-99><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-99> 99</a>
+</span><span class=lnt id=hl-4-100><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-100>100</a>
+</span><span class=lnt id=hl-4-101><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-101>101</a>
+</span><span class=lnt id=hl-4-102><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-102>102</a>
+</span><span class=lnt id=hl-4-103><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-103>103</a>
+</span><span class=lnt id=hl-4-104><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-104>104</a>
+</span><span class=lnt id=hl-4-105><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-105>105</a>
+</span><span class=lnt id=hl-4-106><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-106>106</a>
+</span><span class=lnt id=hl-4-107><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-107>107</a>
+</span><span class=lnt id=hl-4-108><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-108>108</a>
+</span><span class=lnt id=hl-4-109><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-109>109</a>
+</span><span class=lnt id=hl-4-110><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-110>110</a>
+</span><span class=lnt id=hl-4-111><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-111>111</a>
+</span><span class=lnt id=hl-4-112><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-112>112</a>
+</span><span class=lnt id=hl-4-113><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-113>113</a>
+</span><span class=lnt id=hl-4-114><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-114>114</a>
+</span><span class=lnt id=hl-4-115><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-115>115</a>
+</span><span class=lnt id=hl-4-116><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-116>116</a>
+</span><span class=lnt id=hl-4-117><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-117>117</a>
+</span><span class=lnt id=hl-4-118><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-118>118</a>
+</span><span class=lnt id=hl-4-119><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-119>119</a>
+</span><span class=lnt id=hl-4-120><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-120>120</a>
+</span><span class=lnt id=hl-4-121><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-121>121</a>
+</span><span class=lnt id=hl-4-122><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-122>122</a>
+</span><span class=lnt id=hl-4-123><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-123>123</a>
+</span><span class=lnt id=hl-4-124><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-124>124</a>
+</span><span class=lnt id=hl-4-125><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-125>125</a>
+</span><span class=lnt id=hl-4-126><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-126>126</a>
+</span><span class=lnt id=hl-4-127><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-127>127</a>
+</span><span class=lnt id=hl-4-128><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-128>128</a>
+</span><span class=lnt id=hl-4-129><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-129>129</a>
+</span><span class=lnt id=hl-4-130><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-130>130</a>
+</span><span class=lnt id=hl-4-131><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-131>131</a>
+</span><span class=lnt id=hl-4-132><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-132>132</a>
+</span><span class=lnt id=hl-4-133><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-133>133</a>
+</span><span class=lnt id=hl-4-134><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-134>134</a>
+</span><span class=lnt id=hl-4-135><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-135>135</a>
+</span><span class=lnt id=hl-4-136><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-136>136</a>
+</span><span class=lnt id=hl-4-137><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-137>137</a>
+</span><span class=lnt id=hl-4-138><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-138>138</a>
+</span><span class=lnt id=hl-4-139><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-139>139</a>
+</span><span class=lnt id=hl-4-140><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-140>140</a>
+</span><span class=lnt id=hl-4-141><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-141>141</a>
+</span><span class=lnt id=hl-4-142><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-142>142</a>
+</span><span class=lnt id=hl-4-143><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-143>143</a>
+</span><span class=lnt id=hl-4-144><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-144>144</a>
+</span><span class=lnt id=hl-4-145><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-145>145</a>
+</span><span class=lnt id=hl-4-146><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-146>146</a>
+</span><span class=lnt id=hl-4-147><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-147>147</a>
+</span><span class=lnt id=hl-4-148><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-148>148</a>
+</span><span class=lnt id=hl-4-149><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-149>149</a>
+</span><span class=lnt id=hl-4-150><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-150>150</a>
+</span><span class=lnt id=hl-4-151><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-151>151</a>
+</span><span class=lnt id=hl-4-152><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-152>152</a>
+</span><span class=lnt id=hl-4-153><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-153>153</a>
+</span><span class=lnt id=hl-4-154><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-154>154</a>
+</span><span class=lnt id=hl-4-155><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-155>155</a>
+</span><span class=lnt id=hl-4-156><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-156>156</a>
+</span><span class=lnt id=hl-4-157><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-157>157</a>
+</span><span class=lnt id=hl-4-158><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-158>158</a>
+</span><span class=lnt id=hl-4-159><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-159>159</a>
+</span><span class=lnt id=hl-4-160><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-160>160</a>
+</span><span class=lnt id=hl-4-161><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-161>161</a>
+</span><span class=lnt id=hl-4-162><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-162>162</a>
+</span><span class=lnt id=hl-4-163><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-163>163</a>
+</span><span class=lnt id=hl-4-164><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-164>164</a>
+</span><span class=lnt id=hl-4-165><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-165>165</a>
+</span><span class=lnt id=hl-4-166><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-166>166</a>
+</span><span class=lnt id=hl-4-167><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-167>167</a>
+</span><span class=lnt id=hl-4-168><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-168>168</a>
+</span><span class=lnt id=hl-4-169><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-169>169</a>
+</span><span class=lnt id=hl-4-170><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-170>170</a>
+</span><span class=lnt id=hl-4-171><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-171>171</a>
+</span><span class=lnt id=hl-4-172><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-172>172</a>
+</span><span class=lnt id=hl-4-173><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-173>173</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=line><span class=cl><span class=c># 正式环境 http://ludard.com</span>
+</span></span><span class=line><span class=cl><span class=nx>baseURL</span> <span class=p>=</span> <span class=s2>&#34;http://ludard.com&#34;</span>            <span class=c># 本地调试 http://localhost:1313/</span>
+</span></span><span class=line><span class=cl><span class=nx>title</span> <span class=p>=</span> <span class=s2>&#34;卢达的技术博客 - 专注于C#|Go|DevOps|运维开发&#34;</span>
+</span></span><span class=line><span class=cl><span class=nx>enableRobotsTXT</span> <span class=p>=</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl><span class=nx>enableEmoji</span> <span class=p>=</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl><span class=nx>theme</span> <span class=p>=</span> <span class=s2>&#34;jane&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>hasCJKLanguage</span> <span class=p>=</span> <span class=kc>true</span> <span class=c># has chinese/japanese/korean ? # 自动检测是否包含 中文\日文\韩文</span>
+</span></span><span class=line><span class=cl><span class=nx>paginate</span> <span class=p>=</span> <span class=mi>3</span>          <span class=c># Number of articles displayed on the homepage  # 首页每页显示的文章数</span>
+</span></span><span class=line><span class=cl><span class=nx>rssLimit</span> <span class=p>=</span> <span class=mi>20</span>         <span class=c># Limit Entry Count to Rss file # 限制 Rss 文章输出数量</span>
+</span></span><span class=line><span class=cl><span class=nx>disqusShortname</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>  <span class=c># disqus_shortname</span>
+</span></span><span class=line><span class=cl><span class=nx>googleAnalytics</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>  <span class=c># UA-XXXXXXXX-X</span>
+</span></span><span class=line><span class=cl><span class=nx>copyright</span> <span class=p>=</span> <span class=s2>&#34;卢达&#34;</span>      <span class=c># default: author.name ↓        # 默认为下面配置的author.name ↓</span>
+</span></span><span class=line><span class=cl><span class=nx>enableGitInfo</span> <span class=p>=</span> <span class=kc>true</span>  <span class=c># use git commit log to generate lastmod record # 可根据 Git 中的提交生成最近更新记录。</span>
+</span></span><span class=line><span class=cl><span class=c># uglyURLs = true         # more info: https://gohugo.io/content-management/urls/#ugly-urls</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>languageCode</span> <span class=p>=</span> <span class=s2>&#34;zh&#34;</span>
+</span></span><span class=line><span class=cl><span class=c># language support # en / zh-cn / other... translations present in i18n/</span>
+</span></span><span class=line><span class=cl><span class=nx>defaultContentLanguage</span> <span class=p>=</span> <span class=s2>&#34;zh-cn&#34;</span> <span class=c># Default language to use</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>languages</span><span class=p>.</span><span class=nx>en</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=nx>languageCode</span> <span class=p>=</span> <span class=s2>&#34;en&#34;</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>languages</span><span class=p>.</span><span class=nx>zh-cn</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=nx>languageName</span> <span class=p>=</span> <span class=s2>&#34;中文&#34;</span>
+</span></span><span class=line><span class=cl><span class=nx>weight</span> <span class=p>=</span> <span class=mi>2</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>author</span><span class=p>]</span> <span class=c># essential                     # 必需</span>
+</span></span><span class=line><span class=cl>  <span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;卢达&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>sitemap</span><span class=p>]</span> <span class=c># essential                    # 必需</span>
+</span></span><span class=line><span class=cl>  <span class=nx>changefreq</span> <span class=p>=</span> <span class=s2>&#34;weekly&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>priority</span> <span class=p>=</span> <span class=mf>0.5</span>
+</span></span><span class=line><span class=cl>  <span class=nx>filename</span> <span class=p>=</span> <span class=s2>&#34;sitemap.xml&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c># 配置主菜单</span>
+</span></span><span class=line><span class=cl><span class=p>[[</span><span class=nx>menu</span><span class=p>.</span><span class=nx>main</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl>  <span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;主页&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>weight</span> <span class=p>=</span> <span class=mi>10</span>
+</span></span><span class=line><span class=cl>  <span class=nx>identifier</span> <span class=p>=</span> <span class=s2>&#34;home&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>url</span> <span class=p>=</span> <span class=s2>&#34;/&#34;</span>
+</span></span><span class=line><span class=cl><span class=p>[[</span><span class=nx>menu</span><span class=p>.</span><span class=nx>main</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl>  <span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;文章列表&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>weight</span> <span class=p>=</span> <span class=mi>20</span>
+</span></span><span class=line><span class=cl>  <span class=nx>identifier</span> <span class=p>=</span> <span class=s2>&#34;archives&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>url</span> <span class=p>=</span> <span class=s2>&#34;/post/&#34;</span>
+</span></span><span class=line><span class=cl><span class=p>[[</span><span class=nx>menu</span><span class=p>.</span><span class=nx>main</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl>  <span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;标签&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>weight</span> <span class=p>=</span> <span class=mi>30</span>
+</span></span><span class=line><span class=cl>  <span class=nx>identifier</span> <span class=p>=</span> <span class=s2>&#34;tags&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>url</span> <span class=p>=</span> <span class=s2>&#34;/tags/&#34;</span>
+</span></span><span class=line><span class=cl><span class=p>[[</span><span class=nx>menu</span><span class=p>.</span><span class=nx>main</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl>  <span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;分类&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>weight</span> <span class=p>=</span> <span class=mi>40</span>
+</span></span><span class=line><span class=cl>  <span class=nx>identifier</span> <span class=p>=</span> <span class=s2>&#34;categories&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>url</span> <span class=p>=</span> <span class=s2>&#34;/categories/&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c># 代码语法高亮(老版本)</span>
+</span></span><span class=line><span class=cl><span class=c># [highlighting]</span>
+</span></span><span class=line><span class=cl><span class=c>#   pygmentsUseClassic = true</span>
+</span></span><span class=line><span class=cl><span class=c>#   pygmentsCodeFences = true</span>
+</span></span><span class=line><span class=cl><span class=c>#   PygmentsCodefencesGuessSyntax = true</span>
+</span></span><span class=line><span class=cl><span class=c>#   pygmentsStyle = &#34;autumn&#34;</span>
+</span></span><span class=line><span class=cl><span class=c>#   PygmentsOptions = &#34;linenos=table&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c># PygmentsCodeFences = true             # 等同[markup] codeFences = true</span>
+</span></span><span class=line><span class=cl><span class=c># PygmentsUseClasses = true             # 等同[markup] noClasses = false</span>
+</span></span><span class=line><span class=cl><span class=c># PygmentsCodefencesGuessSyntax = true  # 等同[markup] guessSyntax = true</span>
+</span></span><span class=line><span class=cl><span class=c># PygmentsOptions = &#34;linenos=table&#34;     # 等同[markup] lineNumbersInTable = true</span>
+</span></span><span class=line><span class=cl><span class=c># pygmentsStyle = &#34;manni&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c># 代码语法高亮，只应用下面的设置即可，如果应用上面就覆盖了</span>
+</span></span><span class=line><span class=cl><span class=c># 更多设置：https://gohugo.io/getting-started/configuration-markup</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>markup</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=p>[</span><span class=nx>markup</span><span class=p>.</span><span class=nx>highlight</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=nx>anchorLineNos</span> <span class=p>=</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl>    <span class=nx>codeFences</span> <span class=p>=</span> <span class=kc>true</span>         <span class=c># 代码围栏功能，组织成代码块</span>
+</span></span><span class=line><span class=cl>    <span class=nx>guessSyntax</span> <span class=p>=</span> <span class=kc>true</span>        <span class=c># 猜测语法高亮</span>
+</span></span><span class=line><span class=cl>    <span class=nx>hl_Lines</span> <span class=p>=</span> <span class=s1>&#39;&#39;</span>             <span class=c># 高亮的行号，应用于所有代码块。在具体的代码块内设置</span>
+</span></span><span class=line><span class=cl>    <span class=nx>hl_inline</span> <span class=p>=</span> <span class=kc>false</span>         <span class=c># 将块代码显示为一行，开启后很难看</span>
+</span></span><span class=line><span class=cl>    <span class=nx>lineAnchors</span> <span class=p>=</span> <span class=s1>&#39;&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>lineNoStart</span> <span class=p>=</span> <span class=mi>1</span>           <span class=c># 行号编号起始位置</span>
+</span></span><span class=line><span class=cl>    <span class=nx>lineNos</span> <span class=p>=</span> <span class=kc>true</span>            <span class=c># 是否显示行号，如果为false不能应用Table样式也就不显示语言</span>
+</span></span><span class=line><span class=cl>    <span class=nx>lineNumbersInTable</span> <span class=p>=</span> <span class=kc>true</span> <span class=c># 使用表来格式化行号和代码,而不是标签</span>
+</span></span><span class=line><span class=cl>    <span class=nx>noClasses</span> <span class=p>=</span> <span class=kc>false</span>         <span class=c># 使用 style 主题样式，如果为false 使用自定义主题样式</span>
+</span></span><span class=line><span class=cl>    <span class=nx>noHl</span> <span class=p>=</span> <span class=kc>false</span>
+</span></span><span class=line><span class=cl>    <span class=nx>style</span> <span class=p>=</span> <span class=s1>&#39;manni&#39;</span>           <span class=c># 默认monokai 更多：https://xyproto.github.io/splash/docs/all.html</span>
+</span></span><span class=line><span class=cl>    <span class=nx>tabWidth</span> <span class=p>=</span> <span class=mi>4</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>params</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=nx>since</span> <span class=p>=</span> <span class=s2>&#34;2022&#34;</span>          <span class=c># Site creation time          # 站点建立时间</span>
+</span></span><span class=line><span class=cl>  <span class=nx>homeFullContent</span> <span class=p>=</span> <span class=kc>false</span> <span class=c># if false, show post summaries on home page. Otherwise show full content.</span>
+</span></span><span class=line><span class=cl>  <span class=nx>rssFullContent</span> <span class=p>=</span> <span class=kc>false</span>  <span class=c># if false, Rss feed instead of the summary</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c># site info (optional)                                  # 站点信息（可选，不需要的可以直接注释掉）</span>
+</span></span><span class=line><span class=cl>  <span class=nx>logoTitle</span> <span class=p>=</span> <span class=s2>&#34;卢达的博客&#34;</span>                                 <span class=c># default: the title value    # 默认值: 上面设置的title值</span>
+</span></span><span class=line><span class=cl>  <span class=nx>keywords</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;ludard&#34;</span><span class=p>,</span> <span class=s2>&#34;C#&#34;</span><span class=p>,</span> <span class=s2>&#34;.NET&#34;</span><span class=p>,</span> <span class=s2>&#34;go&#34;</span><span class=p>,</span> <span class=s2>&#34;golang&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=nx>description</span> <span class=p>=</span> <span class=s2>&#34;卢达的技术博客，专注于 C#/Go/DevOps/运维开发。&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c># 每篇文章下面显示作者信息</span>
+</span></span><span class=line><span class=cl>  <span class=nx>showAuthorInfo</span> <span class=p>=</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c># 日期显示样式, see https://gohugo.io/functions/format/</span>
+</span></span><span class=line><span class=cl>  <span class=nx>dateFormatToUse</span> <span class=p>=</span> <span class=s2>&#34;2006-01-02&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c># 是否显示字数统计与阅读时间 样式:「约 1812 字  预计阅读 4 分钟」</span>
+</span></span><span class=line><span class=cl>  <span class=c># moreMeta = true</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c># 显示中英文语言切换菜单</span>
+</span></span><span class=line><span class=cl>  <span class=c># showMenuLanguageChooser = true</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c># 添加备案信息</span>
+</span></span><span class=line><span class=cl>  <span class=c># customFooter = &#34;京ICP备10000000号-1&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c># 网站左上角显示 Fork me on Github 条带</span>
+</span></span><span class=line><span class=cl>  <span class=c># forkMeOnGithub = &#34;https://github.com/xianmin/hugo-theme-jane&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c># 文章全局默认配置，也可以在每篇文章的 front matter 中针对单篇内容关闭或开启某些功能，archetypes/default.md 是模板文件。</span>
+</span></span><span class=line><span class=cl>  <span class=nx>toc</span> <span class=p>=</span> <span class=kc>true</span>                                                                                                                                                                       <span class=c># 是否开启目录</span>
+</span></span><span class=line><span class=cl>  <span class=nx>photoswipe</span> <span class=p>=</span> <span class=kc>true</span>                                                                                                                                                                <span class=c># 是否启用PhotoSwipe（图片可点击）  # see https://github.com/dimsemenov/PhotoSwipe</span>
+</span></span><span class=line><span class=cl>  <span class=nx>bootcdn</span> <span class=p>=</span> <span class=kc>false</span>                                                                                                                                                                  <span class=c># 是否使用bootcdn(@Deprecated: 请使用[params.publicCDN]配置)</span>
+</span></span><span class=line><span class=cl>  <span class=nx>mathjax</span> <span class=p>=</span> <span class=kc>true</span>                                                                                                                                                                   <span class=c># 是否使用mathjax（数学公式）  see https://www.mathjax.org/</span>
+</span></span><span class=line><span class=cl>  <span class=nx>katex</span> <span class=p>=</span> <span class=kc>false</span>                                                                                                                                                                    <span class=c># 是否使用KaTeX （排版格式） see https://github.com/KaTeX/KaTeX</span>
+</span></span><span class=line><span class=cl>  <span class=nx>contentCopyright</span> <span class=p>=</span> <span class=s1>&#39;&lt;a rel=&#34;license noopener&#34; href=&#34;https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh&#34;   target=&#34;_blank&#34;&gt;署名-非商业性使用-禁止演绎 4.0 国际许可协议（CC BY-NC-ND 4.0）&lt;/a&gt;&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c># 自定义样式和效果，样式文件要放在相对路径 /static/css 和 /static/js 目录下</span>
+</span></span><span class=line><span class=cl>  <span class=nx>customCSS</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;revise-style.css&#34;</span><span class=p>,</span> <span class=s2>&#34;manni-code-syntax.css&#34;</span><span class=p>]</span> <span class=c># 如果启用 [&#39;custom.css&#39;], 加载 &#39;/static/css/custom.css&#39; 文件</span>
+</span></span><span class=line><span class=cl>  <span class=nx>customJS</span> <span class=p>=</span> <span class=p>[]</span> <span class=c># if [&#39;custom.js&#39;], load &#39;/static/js/custom.js&#39; file</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>changyanAppid</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>       <span class=c># Changyan app id             # 畅言</span>
+</span></span><span class=line><span class=cl>  <span class=nx>changyanAppkey</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>      <span class=c># Changyan app key</span>
+</span></span><span class=line><span class=cl>  <span class=nx>tencent_analytics</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>   <span class=c># Tencent Analytics</span>
+</span></span><span class=line><span class=cl>  <span class=nx>baidu_push</span> <span class=p>=</span> <span class=kc>false</span>       <span class=c># baidu push                  # 百度</span>
+</span></span><span class=line><span class=cl>  <span class=nx>baidu_analytics</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>     <span class=c># Baidu Analytics</span>
+</span></span><span class=line><span class=cl>  <span class=nx>baidu_verification</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>  <span class=c># Baidu Verification</span>
+</span></span><span class=line><span class=cl>  <span class=nx>google_verification</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span> <span class=c># Google_Verification         # 谷歌</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>publicCDN</span><span class=p>]</span> <span class=c># 启用公共CDN，需自行定义</span>
+</span></span><span class=line><span class=cl>    <span class=nx>enable</span> <span class=p>=</span> <span class=kc>false</span>
+</span></span><span class=line><span class=cl>    <span class=nx>jquery</span> <span class=p>=</span> <span class=s1>&#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js&#34;   integrity=&#34;sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span>
+</span></span><span class=line><span class=cl><span class=nx>slideout</span> <span class=p>=</span> <span class=s1>&#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js&#34; integrity=&#34;sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/  9oNPeWqdg=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>gitmentJS</span> <span class=p>=</span> <span class=s1>&#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/gitment@0.0.3/dist/gitment.browser.min.js&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>gitmentCSS</span> <span class=p>=</span> <span class=s1>&#39;&lt;link rel=&#34;stylesheet&#34; href=&#34;https://cdn.jsdelivr.net/npm/gitment@0.0.3/style/default.min.css&#34; crossorigin=&#34;anonymous&#34;&gt;&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>photoswipe</span> <span class=p>=</span> <span class=s1>&#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.js&#34;   integrity=&#34;sha256-AC9ChpELidrhGHX23ZU53vmRdz3FhKaN9E28+BbcWBw=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>photoswipeUI</span> <span class=p>=</span> <span class=s1>&#39;&lt;script src=&#34;https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js&#34; integrity=&#34;sha256-UKkzOn/  w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>photoswipeCSS</span> <span class=p>=</span> <span class=s1>&#39;&lt;link rel=&#34;stylesheet&#34; href=&#34;https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css&#34;   integrity=&#34;sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=&#34; crossorigin=&#34;anonymous&#34;&gt;&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>photoswipeSKIN</span> <span class=p>=</span> <span class=s1>&#39;&lt;link rel=&#34;stylesheet&#34; href=&#34;https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css&#34;   integrity=&#34;sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=&#34; crossorigin=&#34;anonymous&#34;&gt;&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>social</span><span class=p>]</span> <span class=c># 社交链接</span>
+</span></span><span class=line><span class=cl>    <span class=nx>a-email</span> <span class=p>=</span> <span class=s2>&#34;mailto:ludard@outlook.com&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>g-github</span> <span class=p>=</span> <span class=s2>&#34;https://github.com/ludard&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>reward</span><span class=p>]</span> <span class=c># 文章打赏</span>
+</span></span><span class=line><span class=cl>    <span class=nx>enable</span> <span class=p>=</span> <span class=kc>false</span>
+</span></span><span class=line><span class=cl>    <span class=nx>wechat</span> <span class=p>=</span> <span class=s2>&#34;/path/to/your/wechat-qr-code.png&#34;</span> <span class=c># 微信二维码</span>
+</span></span><span class=line><span class=cl>    <span class=nx>alipay</span> <span class=p>=</span> <span class=s2>&#34;/path/to/your/alipay-qr-code.png&#34;</span> <span class=c># 支付宝二维码</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>counter</span><span class=p>.</span><span class=nx>busuanzi</span><span class=p>]</span> <span class=c># a Chinese visitor counter  # 不蒜子计数器</span>
+</span></span><span class=line><span class=cl>    <span class=nx>enable</span> <span class=p>=</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>counter</span><span class=p>.</span><span class=nx>leancloud</span><span class=p>]</span> <span class=c># Chinese leancloud visitor counter  # leancloud 计数器</span>
+</span></span><span class=line><span class=cl>    <span class=nx>enable</span> <span class=p>=</span> <span class=kc>false</span>
+</span></span><span class=line><span class=cl>    <span class=nx>appId</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>appKey</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>commentCount</span><span class=p>.</span><span class=nx>disqus</span><span class=p>]</span> <span class=c># show counts of comments for Disqus</span>
+</span></span><span class=line><span class=cl>    <span class=nx>enable</span> <span class=p>=</span> <span class=kc>false</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c># 指定 git 仓库地址，可以生成指向最近更新的 git commit 的链接，需要将 enableGitInfo 设置成 true.</span>
+</span></span><span class=line><span class=cl>  <span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>gitInfo</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=nx>gitRepo</span> <span class=p>=</span> <span class=s2>&#34;https://github.com/ludard/hugo-blog-code&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>showCommitMessage</span> <span class=p>=</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl>    
+</span></span></code></pre></td></tr></table></div></div><h4 id=文章配置>文章配置</h4><ul><li><p>默认文章文件位于 <code>./content/post</code> 目录。</p></li><li><p>直接运行 <code>hugo</code> 命令，将会自动将网站内容生成到 <code>public/</code> 目录。</p></li><li><p>单篇文章配置，Hugo 允许你使用 yaml， toml 或者 json 语法在你每一篇文章的开头进行设置</p><blockquote><ol><li>配置模板位于 <code>themes\jane\archetypes</code> 有两个文件模板：<code>default.md</code> 和 <code>post.md</code>。 <code>default.md</code> 是除 <code>post</code>外的所有文章的默认模板，如 <code>about</code>，<code>post.md</code> 是 <code>post</code>目录内所有文章的模板</li><li>要应用这些默认配置需要使用命令 <code>hugo new post/test.md</code> 创建文章，手动创建 <code>Markdown</code>的文章是没有的。</li><li>最好禁用 <code>themes\jane\archetypes\post.md</code> 版权设置，禁用后使用全局配置。 <code># contentCopyright: true </code>，如果启用取消注释。</li></ol></blockquote><p>我的文章配置模板：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-5-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-1> 1</a>
+</span><span class=lnt id=hl-5-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-2> 2</a>
+</span><span class=lnt id=hl-5-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-3> 3</a>
+</span><span class=lnt id=hl-5-4><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-4> 4</a>
+</span><span class=lnt id=hl-5-5><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-5> 5</a>
+</span><span class=lnt id=hl-5-6><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-6> 6</a>
+</span><span class=lnt id=hl-5-7><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-7> 7</a>
+</span><span class=lnt id=hl-5-8><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-8> 8</a>
+</span><span class=lnt id=hl-5-9><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-9> 9</a>
+</span><span class=lnt id=hl-5-10><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-10>10</a>
+</span><span class=lnt id=hl-5-11><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-11>11</a>
+</span><span class=lnt id=hl-5-12><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-12>12</a>
+</span><span class=lnt id=hl-5-13><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-13>13</a>
+</span><span class=lnt id=hl-5-14><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-14>14</a>
+</span><span class=lnt id=hl-5-15><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-15>15</a>
+</span><span class=lnt id=hl-5-16><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-16>16</a>
+</span><span class=lnt id=hl-5-17><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-17>17</a>
+</span><span class=lnt id=hl-5-18><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-18>18</a>
+</span><span class=lnt id=hl-5-19><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-19>19</a>
+</span><span class=lnt id=hl-5-20><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-20>20</a>
+</span><span class=lnt id=hl-5-21><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-21>21</a>
+</span><span class=lnt id=hl-5-22><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-22>22</a>
+</span><span class=lnt id=hl-5-23><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-23>23</a>
+</span><span class=lnt id=hl-5-24><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-24>24</a>
+</span><span class=lnt id=hl-5-25><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-25>25</a>
+</span><span class=lnt id=hl-5-26><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-26>26</a>
+</span><span class=lnt id=hl-5-27><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-27>27</a>
+</span><span class=lnt id=hl-5-28><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-28>28</a>
+</span><span class=lnt id=hl-5-29><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-29>29</a>
+</span><span class=lnt id=hl-5-30><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-30>30</a>
+</span><span class=lnt id=hl-5-31><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-31>31</a>
+</span><span class=lnt id=hl-5-32><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-32>32</a>
+</span><span class=lnt id=hl-5-33><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-33>33</a>
+</span><span class=lnt id=hl-5-34><a style=outline:none;text-decoration:none;color:inherit href=#hl-5-34>34</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>---
+</span></span><span class=line><span class=cl>title: &#34;{{ replace .TranslationBaseName &#34;-&#34; &#34; &#34; | title }}&#34;  # 标题，如果有空格用 - 代替
+</span></span><span class=line><span class=cl>date: {{ .Date }}             # 创建日期
+</span></span><span class=line><span class=cl>lastmod: {{ .Date }}          # 最后修改日期
+</span></span><span class=line><span class=cl>draft: true                   # 文章中否是草稿，如果是发布后不显示
+</span></span><span class=line><span class=cl>keywords: [&#34;技术&#34;]             # 文章关键字
+</span></span><span class=line><span class=cl>description: &#34;&#34;               # 文章描述，方便搜索引擎搜索
+</span></span><span class=line><span class=cl>tags: []                      # 文章的标签 
+</span></span><span class=line><span class=cl>categories: [&#34;技术&#34;]           # 文章分类，在导航菜单分类里可以看到
+</span></span><span class=line><span class=cl>author: &#34;卢达&#34;                 # 文章作者
+</span></span><span class=line><span class=cl>slug: blog-url-path           # 文章的名称，默认是 <span class=sb>`title`</span> 的值。我一般title使用中文，然后URL使用英文
+</span></span><span class=line><span class=cl>url: post/tech/blog-url-path  # 显示在浏览器URL地址栏的地址
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=gh># Uncomment to pin article to front page
+</span></span></span><span class=line><span class=cl><span class=gh># weight: 1                   # 权重，数值越高权重越大，搜索结果越靠前
+</span></span></span><span class=line><span class=cl><span class=gh># You can also close(false) or open(true) something for this content.
+</span></span></span><span class=line><span class=cl><span class=gh># P.S. comment can only be closed
+</span></span></span><span class=line><span class=cl><span class=gh></span>comment: true                 # 是否显示评论区
+</span></span><span class=line><span class=cl>toc: true                     # 显示文章目录
+</span></span><span class=line><span class=cl>autoCollapseToc: true         # 自动展开目录
+</span></span><span class=line><span class=cl><span class=gh># You can also define another contentCopyright. e.g. contentCopyright: &#34;This is another copyright.&#34;
+</span></span></span><span class=line><span class=cl><span class=gh># contentCopyright: true
+</span></span></span><span class=line><span class=cl><span class=gh></span>reward: false                 # 是否开启打赏
+</span></span><span class=line><span class=cl>mathjax: true                 # 是否支持数字公式
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=gh># Uncomment to add to the homepage&#39;s dropdown menu; weight = order of article
+</span></span></span><span class=line><span class=cl><span class=gh># menu:
+</span></span></span><span class=line><span class=cl><span class=gh>#   main:
+</span></span></span><span class=line><span class=cl><span class=gh>#     parent: &#34;docs&#34;
+</span></span></span><span class=line><span class=cl><span class=gh>#     weight: 1
+</span></span></span><span class=line><span class=cl><span class=gh></span>---
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c>&lt;!--more--&gt;</span>
+</span></span><span class=line><span class=cl>Markdown 文章正文
+</span></span></code></pre></td></tr></table></div></div></li></ul><h4 id=自定义页面样式>自定义页面样式</h4><p>如果不满意主题的样式，可以按 <code>F12</code> 调整，然后将样式保存在根目录的 <code>\static\css</code> 目录下，然后修改博客配置添加自定义样式文件名称。</p><p>比如我自定义了2个文件，<code>revise-style.css</code> 和 <code>manni-code-syntax.css</code>。修改 <code>config.toml</code> 配置，添加这2个样式文件：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-6-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-6-1>1</a>
+</span><span class=lnt id=hl-6-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-6-2>2</a>
+</span><span class=lnt id=hl-6-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-6-3>3</a>
+</span><span class=lnt id=hl-6-4><a style=outline:none;text-decoration:none;color:inherit href=#hl-6-4>4</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=line><span class=cl><span class=nx>customCSS</span> <span class=p>=</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>  <span class=s2>&#34;revise-style.css&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=s2>&#34;manni-code-syntax.css&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>]</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>revise-style.css</code> 修改了标签样式，将代码块的字号减小了一点：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-7-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-7-1> 1</a>
+</span><span class=lnt id=hl-7-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-7-2> 2</a>
+</span><span class=lnt id=hl-7-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-7-3> 3</a>
+</span><span class=lnt id=hl-7-4><a style=outline:none;text-decoration:none;color:inherit href=#hl-7-4> 4</a>
+</span><span class=lnt id=hl-7-5><a style=outline:none;text-decoration:none;color:inherit href=#hl-7-5> 5</a>
+</span><span class=lnt id=hl-7-6><a style=outline:none;text-decoration:none;color:inherit href=#hl-7-6> 6</a>
+</span><span class=lnt id=hl-7-7><a style=outline:none;text-decoration:none;color:inherit href=#hl-7-7> 7</a>
+</span><span class=lnt id=hl-7-8><a style=outline:none;text-decoration:none;color:inherit href=#hl-7-8> 8</a>
+</span><span class=lnt id=hl-7-9><a style=outline:none;text-decoration:none;color:inherit href=#hl-7-9> 9</a>
+</span><span class=lnt id=hl-7-10><a style=outline:none;text-decoration:none;color:inherit href=#hl-7-10>10</a>
+</span><span class=lnt id=hl-7-11><a style=outline:none;text-decoration:none;color:inherit href=#hl-7-11>11</a>
+</span><span class=lnt id=hl-7-12><a style=outline:none;text-decoration:none;color:inherit href=#hl-7-12>12</a>
+</span><span class=lnt id=hl-7-13><a style=outline:none;text-decoration:none;color:inherit href=#hl-7-13>13</a>
+</span><span class=lnt id=hl-7-14><a style=outline:none;text-decoration:none;color:inherit href=#hl-7-14>14</a>
+</span><span class=lnt id=hl-7-15><a style=outline:none;text-decoration:none;color:inherit href=#hl-7-15>15</a>
+</span><span class=lnt id=hl-7-16><a style=outline:none;text-decoration:none;color:inherit href=#hl-7-16>16</a>
+</span><span class=lnt id=hl-7-17><a style=outline:none;text-decoration:none;color:inherit href=#hl-7-17>17</a>
+</span><span class=lnt id=hl-7-18><a style=outline:none;text-decoration:none;color:inherit href=#hl-7-18>18</a>
+</span><span class=lnt id=hl-7-19><a style=outline:none;text-decoration:none;color:inherit href=#hl-7-19>19</a>
+</span><span class=lnt id=hl-7-20><a style=outline:none;text-decoration:none;color:inherit href=#hl-7-20>20</a>
+</span><span class=lnt id=hl-7-21><a style=outline:none;text-decoration:none;color:inherit href=#hl-7-21>21</a>
+</span><span class=lnt id=hl-7-22><a style=outline:none;text-decoration:none;color:inherit href=#hl-7-22>22</a>
+</span><span class=lnt id=hl-7-23><a style=outline:none;text-decoration:none;color:inherit href=#hl-7-23>23</a>
+</span><span class=lnt id=hl-7-24><a style=outline:none;text-decoration:none;color:inherit href=#hl-7-24>24</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=line><span class=cl><span class=c>/*代码块样式*/</span>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nc>post</span> <span class=p>.</span><span class=nc>post-content</span> <span class=nt>code</span><span class=o>,</span> <span class=p>.</span><span class=nc>post</span> <span class=p>.</span><span class=nc>post-content</span> <span class=nt>pre</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c>/* padding: 2px 4px; */</span>
+</span></span><span class=line><span class=cl>    <span class=k>font-size</span><span class=p>:</span> <span class=mf>0.75</span><span class=kt>em</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nc>post</span> <span class=p>.</span><span class=nc>post-content</span> <span class=p>.</span><span class=nc>highlight</span> <span class=nt>code</span><span class=p>::</span><span class=nd>after</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>color</span><span class=p>:</span> <span class=mh>#93a1a1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c>/*标签样式*/</span>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nc>post</span> <span class=p>.</span><span class=nc>post-footer</span> <span class=p>.</span><span class=nc>post-tags</span> <span class=nt>a</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>color</span><span class=p>:</span> <span class=mh>#c05b4d</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>word-break</span><span class=p>:</span> <span class=n>break-all</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-right</span><span class=p>:</span> <span class=mi>10</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>padding</span><span class=p>:</span> <span class=mi>1</span><span class=kt>px</span> <span class=mi>10</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>border</span><span class=p>:</span> <span class=mi>1</span><span class=kt>px</span> <span class=kc>solid</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>border-radius</span><span class=p>:</span> <span class=mi>20</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>border-color</span><span class=p>:</span> <span class=mh>#9e9e9e</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nc>post</span> <span class=p>.</span><span class=nc>post-footer</span> <span class=p>.</span><span class=nc>post-tags</span> <span class=nt>a</span><span class=p>::</span><span class=nd>before</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>content</span><span class=p>:</span> <span class=s1>&#39;&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>manni-code-syntax.css</code> 自定义了代码块主题的颜色：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-8-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-1> 1</a>
+</span><span class=lnt id=hl-8-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-2> 2</a>
+</span><span class=lnt id=hl-8-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-3> 3</a>
+</span><span class=lnt id=hl-8-4><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-4> 4</a>
+</span><span class=lnt id=hl-8-5><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-5> 5</a>
+</span><span class=lnt id=hl-8-6><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-6> 6</a>
+</span><span class=lnt id=hl-8-7><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-7> 7</a>
+</span><span class=lnt id=hl-8-8><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-8> 8</a>
+</span><span class=lnt id=hl-8-9><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-9> 9</a>
+</span><span class=lnt id=hl-8-10><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-10>10</a>
+</span><span class=lnt id=hl-8-11><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-11>11</a>
+</span><span class=lnt id=hl-8-12><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-12>12</a>
+</span><span class=lnt id=hl-8-13><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-13>13</a>
+</span><span class=lnt id=hl-8-14><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-14>14</a>
+</span><span class=lnt id=hl-8-15><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-15>15</a>
+</span><span class=lnt id=hl-8-16><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-16>16</a>
+</span><span class=lnt id=hl-8-17><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-17>17</a>
+</span><span class=lnt id=hl-8-18><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-18>18</a>
+</span><span class=lnt id=hl-8-19><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-19>19</a>
+</span><span class=lnt id=hl-8-20><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-20>20</a>
+</span><span class=lnt id=hl-8-21><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-21>21</a>
+</span><span class=lnt id=hl-8-22><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-22>22</a>
+</span><span class=lnt id=hl-8-23><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-23>23</a>
+</span><span class=lnt id=hl-8-24><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-24>24</a>
+</span><span class=lnt id=hl-8-25><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-25>25</a>
+</span><span class=lnt id=hl-8-26><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-26>26</a>
+</span><span class=lnt id=hl-8-27><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-27>27</a>
+</span><span class=lnt id=hl-8-28><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-28>28</a>
+</span><span class=lnt id=hl-8-29><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-29>29</a>
+</span><span class=lnt id=hl-8-30><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-30>30</a>
+</span><span class=lnt id=hl-8-31><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-31>31</a>
+</span><span class=lnt id=hl-8-32><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-32>32</a>
+</span><span class=lnt id=hl-8-33><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-33>33</a>
+</span><span class=lnt id=hl-8-34><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-34>34</a>
+</span><span class=lnt id=hl-8-35><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-35>35</a>
+</span><span class=lnt id=hl-8-36><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-36>36</a>
+</span><span class=lnt id=hl-8-37><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-37>37</a>
+</span><span class=lnt id=hl-8-38><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-38>38</a>
+</span><span class=lnt id=hl-8-39><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-39>39</a>
+</span><span class=lnt id=hl-8-40><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-40>40</a>
+</span><span class=lnt id=hl-8-41><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-41>41</a>
+</span><span class=lnt id=hl-8-42><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-42>42</a>
+</span><span class=lnt id=hl-8-43><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-43>43</a>
+</span><span class=lnt id=hl-8-44><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-44>44</a>
+</span><span class=lnt id=hl-8-45><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-45>45</a>
+</span><span class=lnt id=hl-8-46><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-46>46</a>
+</span><span class=lnt id=hl-8-47><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-47>47</a>
+</span><span class=lnt id=hl-8-48><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-48>48</a>
+</span><span class=lnt id=hl-8-49><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-49>49</a>
+</span><span class=lnt id=hl-8-50><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-50>50</a>
+</span><span class=lnt id=hl-8-51><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-51>51</a>
+</span><span class=lnt id=hl-8-52><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-52>52</a>
+</span><span class=lnt id=hl-8-53><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-53>53</a>
+</span><span class=lnt id=hl-8-54><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-54>54</a>
+</span><span class=lnt id=hl-8-55><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-55>55</a>
+</span><span class=lnt id=hl-8-56><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-56>56</a>
+</span><span class=lnt id=hl-8-57><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-57>57</a>
+</span><span class=lnt id=hl-8-58><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-58>58</a>
+</span><span class=lnt id=hl-8-59><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-59>59</a>
+</span><span class=lnt id=hl-8-60><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-60>60</a>
+</span><span class=lnt id=hl-8-61><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-61>61</a>
+</span><span class=lnt id=hl-8-62><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-62>62</a>
+</span><span class=lnt id=hl-8-63><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-63>63</a>
+</span><span class=lnt id=hl-8-64><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-64>64</a>
+</span><span class=lnt id=hl-8-65><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-65>65</a>
+</span><span class=lnt id=hl-8-66><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-66>66</a>
+</span><span class=lnt id=hl-8-67><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-67>67</a>
+</span><span class=lnt id=hl-8-68><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-68>68</a>
+</span><span class=lnt id=hl-8-69><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-69>69</a>
+</span><span class=lnt id=hl-8-70><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-70>70</a>
+</span><span class=lnt id=hl-8-71><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-71>71</a>
+</span><span class=lnt id=hl-8-72><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-72>72</a>
+</span><span class=lnt id=hl-8-73><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-73>73</a>
+</span><span class=lnt id=hl-8-74><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-74>74</a>
+</span><span class=lnt id=hl-8-75><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-75>75</a>
+</span><span class=lnt id=hl-8-76><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-76>76</a>
+</span><span class=lnt id=hl-8-77><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-77>77</a>
+</span><span class=lnt id=hl-8-78><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-78>78</a>
+</span><span class=lnt id=hl-8-79><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-79>79</a>
+</span><span class=lnt id=hl-8-80><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-80>80</a>
+</span><span class=lnt id=hl-8-81><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-81>81</a>
+</span><span class=lnt id=hl-8-82><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-82>82</a>
+</span><span class=lnt id=hl-8-83><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-83>83</a>
+</span><span class=lnt id=hl-8-84><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-84>84</a>
+</span><span class=lnt id=hl-8-85><a style=outline:none;text-decoration:none;color:inherit href=#hl-8-85>85</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=line><span class=cl><span class=c>/* Background */</span> <span class=p>.</span><span class=nc>bg</span> <span class=p>{</span> <span class=k>background-color</span><span class=p>:</span> <span class=mh>#f8f8f8</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* PreWrapper */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>{</span> <span class=k>background-color</span><span class=p>:</span> <span class=mh>#f8f8f8</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* Other */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>x</span> <span class=p>{</span>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* Error */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>err</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#aa0000</span><span class=p>;</span> <span class=k>background-color</span><span class=p>:</span> <span class=mh>#ffaaaa</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* CodeLine */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>cl</span> <span class=p>{</span>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LineTableTD */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>lntd</span> <span class=p>{</span> <span class=k>vertical-align</span><span class=p>:</span> <span class=kc>top</span><span class=p>;</span> <span class=k>padding</span><span class=p>:</span> <span class=mi>0</span><span class=p>;</span> <span class=k>margin</span><span class=p>:</span> <span class=mi>0</span><span class=p>;</span> <span class=k>border</span><span class=p>:</span> <span class=mi>0</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LineTable */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>lntable</span> <span class=p>{</span> <span class=k>border-spacing</span><span class=p>:</span> <span class=mi>0</span><span class=p>;</span> <span class=k>padding</span><span class=p>:</span> <span class=mi>0</span><span class=p>;</span> <span class=k>margin</span><span class=p>:</span> <span class=mi>0</span><span class=p>;</span> <span class=k>border</span><span class=p>:</span> <span class=mi>0</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LineHighlight */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>hl</span> <span class=p>{</span> <span class=k>background-color</span><span class=p>:</span> <span class=mh>#ffffcc</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LineNumbersTable */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>lnt</span> <span class=p>{</span> <span class=k>white-space</span><span class=p>:</span> <span class=kc>pre</span><span class=p>;</span> <span class=k>user-select</span><span class=p>:</span> <span class=kc>none</span><span class=p>;</span> <span class=k>margin-right</span><span class=p>:</span> <span class=mf>0.4</span><span class=kt>em</span><span class=p>;</span> <span class=k>padding</span><span class=p>:</span> <span class=mi>0</span> <span class=mf>0.4</span><span class=kt>em</span> <span class=mi>0</span> <span class=mf>0.4</span><span class=kt>em</span><span class=p>;</span><span class=k>color</span><span class=p>:</span> <span class=mh>#7f7f7f</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LineNumbers */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>ln</span> <span class=p>{</span> <span class=k>white-space</span><span class=p>:</span> <span class=kc>pre</span><span class=p>;</span> <span class=k>user-select</span><span class=p>:</span> <span class=kc>none</span><span class=p>;</span> <span class=k>margin-right</span><span class=p>:</span> <span class=mf>0.4</span><span class=kt>em</span><span class=p>;</span> <span class=k>padding</span><span class=p>:</span> <span class=mi>0</span> <span class=mf>0.4</span><span class=kt>em</span> <span class=mi>0</span> <span class=mf>0.4</span><span class=kt>em</span><span class=p>;</span><span class=k>color</span><span class=p>:</span> <span class=mh>#7f7f7f</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* Line */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>line</span> <span class=p>{</span> <span class=k>display</span><span class=p>:</span> <span class=kc>flex</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* Keyword */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>k</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#006699</span><span class=p>;</span> <span class=k>font-weight</span><span class=p>:</span> <span class=kc>bold</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* KeywordConstant */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>kc</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#006699</span><span class=p>;</span> <span class=k>font-weight</span><span class=p>:</span> <span class=kc>bold</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* KeywordDeclaration */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>kd</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#006699</span><span class=p>;</span> <span class=k>font-weight</span><span class=p>:</span> <span class=kc>bold</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* KeywordNamespace */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>kn</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#006699</span><span class=p>;</span> <span class=k>font-weight</span><span class=p>:</span> <span class=kc>bold</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* KeywordPseudo */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>kp</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#006699</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* KeywordReserved */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>kr</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#006699</span><span class=p>;</span> <span class=k>font-weight</span><span class=p>:</span> <span class=kc>bold</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* KeywordType */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>kt</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#007788</span><span class=p>;</span> <span class=k>font-weight</span><span class=p>:</span> <span class=kc>bold</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* Name */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>n</span> <span class=p>{</span>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* NameAttribute */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>na</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#330099</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* NameBuiltin */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>nb</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#336666</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* NameBuiltinPseudo */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>bp</span> <span class=p>{</span>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* NameClass */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>nc</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#00aa88</span><span class=p>;</span> <span class=k>font-weight</span><span class=p>:</span> <span class=kc>bold</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* NameConstant */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>no</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#336600</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* NameDecorator */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>nd</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#9999ff</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* NameEntity */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>ni</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#999999</span><span class=p>;</span> <span class=k>font-weight</span><span class=p>:</span> <span class=kc>bold</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* NameException */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>ne</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#cc0000</span><span class=p>;</span> <span class=k>font-weight</span><span class=p>:</span> <span class=kc>bold</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* NameFunction */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>nf</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#cc00ff</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* NameFunctionMagic */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>fm</span> <span class=p>{</span>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* NameLabel */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>nl</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#9999ff</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* NameNamespace */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>nn</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#00ccff</span><span class=p>;</span> <span class=k>font-weight</span><span class=p>:</span> <span class=kc>bold</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* NameOther */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>nx</span> <span class=p>{</span>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* NameProperty */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>py</span> <span class=p>{</span>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* NameTag */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>nt</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#330099</span><span class=p>;</span> <span class=k>font-weight</span><span class=p>:</span> <span class=kc>bold</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* NameVariable */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>nv</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#003333</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* NameVariableClass */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>vc</span> <span class=p>{</span>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* NameVariableGlobal */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>vg</span> <span class=p>{</span>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* NameVariableInstance */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>vi</span> <span class=p>{</span>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* NameVariableMagic */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>vm</span> <span class=p>{</span>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* Literal */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>l</span> <span class=p>{</span>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LiteralDate */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>ld</span> <span class=p>{</span>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LiteralString */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>s</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#A05A48</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LiteralStringAffix */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>sa</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#A05A48</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LiteralStringBacktick */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>sb</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#A05A48</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LiteralStringChar */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>sc</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#A05A48</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LiteralStringDelimiter */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>dl</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#A05A48</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LiteralStringDoc */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>sd</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#A05A48</span><span class=p>;</span> <span class=k>font-style</span><span class=p>:</span> <span class=kc>italic</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LiteralStringDouble */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>s2</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#A05A48</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LiteralStringEscape */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>se</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#A05A48</span><span class=p>;</span> <span class=k>font-weight</span><span class=p>:</span> <span class=kc>bold</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LiteralStringHeredoc */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>sh</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#A05A48</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LiteralStringInterpol */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>si</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#aa0000</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LiteralStringOther */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>sx</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#A05A48</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LiteralStringRegex */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>sr</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#33aaaa</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LiteralStringSingle */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>s1</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#A05A48</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LiteralStringSymbol */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>ss</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#ffcc33</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LiteralNumber */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>m</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#ff6600</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LiteralNumberBin */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>mb</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#ff6600</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LiteralNumberFloat */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>mf</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#ff6600</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LiteralNumberHex */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>mh</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#ff6600</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LiteralNumberInteger */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>mi</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#ff6600</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LiteralNumberIntegerLong */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>il</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#ff6600</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* LiteralNumberOct */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>mo</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#ff6600</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* Operator */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>o</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#555555</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* OperatorWord */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>ow</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#000000</span><span class=p>;</span> <span class=k>font-weight</span><span class=p>:</span> <span class=kc>bold</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* Punctuation */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>p</span> <span class=p>{</span>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* Comment */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>c</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#A0A1A7</span><span class=p>;</span> <span class=k>font-style</span><span class=p>:</span> <span class=kc>italic</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* CommentHashbang */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>ch</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#A0A1A7</span><span class=p>;</span> <span class=k>font-style</span><span class=p>:</span> <span class=kc>italic</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* CommentMultiline */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>cm</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#A0A1A7</span><span class=p>;</span> <span class=k>font-style</span><span class=p>:</span> <span class=kc>italic</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* CommentSingle */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>c1</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#A0A1A7</span><span class=p>;</span> <span class=k>font-style</span><span class=p>:</span> <span class=kc>italic</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* CommentSpecial */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>cs</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#A0A1A7</span><span class=p>;</span> <span class=k>font-weight</span><span class=p>:</span> <span class=kc>bold</span><span class=p>;</span> <span class=k>font-style</span><span class=p>:</span> <span class=kc>italic</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* CommentPreproc */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>cp</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#009999</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* CommentPreprocFile */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>cpf</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#009999</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* Generic */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>g</span> <span class=p>{</span>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* GenericDeleted */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>gd</span> <span class=p>{</span> <span class=k>background-color</span><span class=p>:</span> <span class=mh>#ffcccc</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* GenericEmph */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>ge</span> <span class=p>{</span> <span class=k>font-style</span><span class=p>:</span> <span class=kc>italic</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* GenericError */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>gr</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#ff0000</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* GenericHeading */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>gh</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#003300</span><span class=p>;</span> <span class=k>font-weight</span><span class=p>:</span> <span class=kc>bold</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* GenericInserted */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>gi</span> <span class=p>{</span> <span class=k>background-color</span><span class=p>:</span> <span class=mh>#ccffcc</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* GenericOutput */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>go</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#aaaaaa</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* GenericPrompt */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>gp</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#000099</span><span class=p>;</span> <span class=k>font-weight</span><span class=p>:</span> <span class=kc>bold</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* GenericStrong */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>gs</span> <span class=p>{</span> <span class=k>font-weight</span><span class=p>:</span> <span class=kc>bold</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* GenericSubheading */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>gu</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#003300</span><span class=p>;</span> <span class=k>font-weight</span><span class=p>:</span> <span class=kc>bold</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* GenericTraceback */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>gt</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#99cc66</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* GenericUnderline */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>gl</span> <span class=p>{</span> <span class=k>text-decoration</span><span class=p>:</span> <span class=kc>underline</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c>/* TextWhitespace */</span> <span class=p>.</span><span class=nc>chroma</span> <span class=p>.</span><span class=nc>w</span> <span class=p>{</span> <span class=k>color</span><span class=p>:</span> <span class=mh>#bbbbbb</span> <span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=自定义代码块主题颜色>自定义代码块主题颜色</h4><p>自定义代码块主题颜色步骤：</p><ol><li><p>将博客 <code>config.toml</code> 配置的 <code>noClasses</code> 设置为 <code>false</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-9-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-9-1>1</a>
+</span><span class=lnt id=hl-9-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-9-2>2</a>
+</span><span class=lnt id=hl-9-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-9-3>3</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=line><span class=cl><span class=p>[</span><span class=nx>markup</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=p>[</span><span class=nx>markup</span><span class=p>.</span><span class=nx>highlight</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=nx>noClasses</span> <span class=p>=</span> <span class=kc>false</span>         <span class=c># 使用 style 主题样式，如果为false 使用自定义主题样式</span>
+</span></span></code></pre></td></tr></table></div></div></li><li><p>使用命令 <code>hugo gen chromastyles --style=manni > manni-code-syntax.css</code> 在当前目录生成 <code>manni-code-syntax.css</code> 文件，再剪切到 <code>\static\css</code> 目录下</p><blockquote><p>注意：<code>manni</code> 是默认支持的主题模板。默认支持的所有主题：<a href=https://xyproto.github.io/splash/docs/all.html>Chroma Style Gallery</a></p><p><code>manni-code-syntax.css</code> 是自定义的主题样式文件名称</p></blockquote></li><li><p>代码块支持的所有可以高亮的语言 <a href=https://gohugo.io/content-management/syntax-highlighting/#list-of-chroma-highlighting-languages>List of Chroma Highlighting Languages</a> ，如果一种语言有多种叫法只需要确定一种即可，比如代码块是 <code>C#</code> 语言，使用 <code>csharp</code> 或 <code>c#</code> 标记都可以</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-10-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-10-1>1</a>
+</span><span class=lnt id=hl-10-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-10-2>2</a>
+</span><span class=lnt id=hl-10-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-10-3>3</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl><span class=s>```csharp
+</span></span></span><span class=line><span class=cl><span class=s></span><span class=c1>// ... code</span>
+</span></span><span class=line><span class=cl><span class=s>```</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-11-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-11-1> 1</a>
+</span><span class=lnt id=hl-11-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-11-2> 2</a>
+</span><span class=lnt id=hl-11-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-11-3> 3</a>
+</span><span class=lnt id=hl-11-4><a style=outline:none;text-decoration:none;color:inherit href=#hl-11-4> 4</a>
+</span><span class=lnt id=hl-11-5><a style=outline:none;text-decoration:none;color:inherit href=#hl-11-5> 5</a>
+</span><span class=lnt id=hl-11-6><a style=outline:none;text-decoration:none;color:inherit href=#hl-11-6> 6</a>
+</span><span class=lnt id=hl-11-7><a style=outline:none;text-decoration:none;color:inherit href=#hl-11-7> 7</a>
+</span><span class=lnt id=hl-11-8><a style=outline:none;text-decoration:none;color:inherit href=#hl-11-8> 8</a>
+</span><span class=lnt id=hl-11-9><a style=outline:none;text-decoration:none;color:inherit href=#hl-11-9> 9</a>
+</span><span class=lnt id=hl-11-10><a style=outline:none;text-decoration:none;color:inherit href=#hl-11-10>10</a>
+</span><span class=lnt id=hl-11-11><a style=outline:none;text-decoration:none;color:inherit href=#hl-11-11>11</a>
+</span><span class=lnt id=hl-11-12><a style=outline:none;text-decoration:none;color:inherit href=#hl-11-12>12</a>
+</span><span class=lnt id=hl-11-13><a style=outline:none;text-decoration:none;color:inherit href=#hl-11-13>13</a>
+</span><span class=lnt id=hl-11-14><a style=outline:none;text-decoration:none;color:inherit href=#hl-11-14>14</a>
+</span><span class=lnt id=hl-11-15><a style=outline:none;text-decoration:none;color:inherit href=#hl-11-15>15</a>
+</span><span class=lnt id=hl-11-16><a style=outline:none;text-decoration:none;color:inherit href=#hl-11-16>16</a>
+</span><span class=lnt id=hl-11-17><a style=outline:none;text-decoration:none;color:inherit href=#hl-11-17>17</a>
+</span><span class=lnt id=hl-11-18><a style=outline:none;text-decoration:none;color:inherit href=#hl-11-18>18</a>
+</span><span class=lnt id=hl-11-19><a style=outline:none;text-decoration:none;color:inherit href=#hl-11-19>19</a>
+</span><span class=lnt id=hl-11-20><a style=outline:none;text-decoration:none;color:inherit href=#hl-11-20>20</a>
+</span><span class=lnt id=hl-11-21><a style=outline:none;text-decoration:none;color:inherit href=#hl-11-21>21</a>
+</span><span class=lnt id=hl-11-22><a style=outline:none;text-decoration:none;color:inherit href=#hl-11-22>22</a>
+</span><span class=lnt id=hl-11-23><a style=outline:none;text-decoration:none;color:inherit href=#hl-11-23>23</a>
+</span><span class=lnt id=hl-11-24><a style=outline:none;text-decoration:none;color:inherit href=#hl-11-24>24</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>Bash
+</span></span><span class=line><span class=cl>bash, sh, ksh, zsh, shell
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>C#
+</span></span><span class=line><span class=cl>csharp, c#
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>CoffeeScript
+</span></span><span class=line><span class=cl>coffee-script, coffeescript, coffee
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>CoffeeScript
+</span></span><span class=line><span class=cl>coffee-script, coffeescript, coffee
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Go
+</span></span><span class=line><span class=cl>go, golang
+</span></span><span class=line><span class=cl>Go HTML Template
+</span></span><span class=line><span class=cl>go-html-template
+</span></span><span class=line><span class=cl>Go HTML Template
+</span></span><span class=line><span class=cl>go-html-template
+</span></span><span class=line><span class=cl>Go Text Template
+</span></span><span class=line><span class=cl>go-text-template
+</span></span><span class=line><span class=cl>GraphQL
+</span></span><span class=line><span class=cl>graphql, graphqls, gql
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>...
+</span></span></code></pre></td></tr></table></div></div></li><li><p>在代码块内也可以高亮某一块区域，</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-12-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-12-1>1</a>
+</span><span class=lnt id=hl-12-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-12-2>2</a>
+</span><span class=lnt id=hl-12-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-12-3>3</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>```go {linenos=table,hl_lines=[8,&#34;15-17&#34;],linenostart=199}
+</span></span><span class=line><span class=cl>// ... code
+</span></span><span class=line><span class=cl>```
+</span></span></code></pre></td></tr></table></div></div><p>效果图：</p><p><img src=/image/2022/09/13_14_hugo_code_highlighting.png alt=code_highlighting></p></li></ol><p>​ 更多语法：<a href=https://gohugo.io/content-management/syntax-highlighting/>syntax-highlighting</a></p><h4 id=自定义文章结构>自定义文章结构</h4><p>定义文章保存物理结构：</p><p>文章保存物理结构主要是保存在本地的组织结构。所有博客文章默认都保存在 <code>content\post</code> 目录下，如果所有文章都直接放这个目录下时间长了非常难找。所以我是按年份在 <code>post</code> 下新建一级目录，如 <code>2022</code>、<code>2023</code>，然后在年份目录下再按月份新建目录，如 <code>01</code>、<code>02</code>&mldr;<code>12</code>，文章放放在对应的年月目录下。为了方便在本地查看和搜索，所有文章名称格式都是 <code>文章顺序编号.文章中文标题.md</code>。比如：<code>001.Hugo博客搭建_1_搭建本地运行环境.md</code></p><p>如果要查找只需要查看文章创建日期然后到对应的目录下就可以找到了。</p><p>定义文章显示逻辑结构：</p><p>文章显示逻辑结构主要是浏览器打开博客文章时显示在 <code>URL</code> 地址的结构。通过每篇文章的元数据标签 <code>slug</code> 和 <code>url</code>可以自定义文章URL的组织结构。</p><ul><li><code>slug</code> 最好定义为英文，将文章中文标题翻译为英文即可。方便URL显示，中文又长又容易乱码，不方便记忆。</li><li><code>url</code> 自定义文章的URL地址，我定义的结构是 <code>分类 + slug</code>，比较简短好记。分类主要有 <code>tech</code>、<code>csharp</code> 、<code>golang</code>、<code>thinking</code>、<code>live</code> 等</li></ul><p>结构图：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-13-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-13-1> 1</a>
+</span><span class=lnt id=hl-13-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-13-2> 2</a>
+</span><span class=lnt id=hl-13-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-13-3> 3</a>
+</span><span class=lnt id=hl-13-4><a style=outline:none;text-decoration:none;color:inherit href=#hl-13-4> 4</a>
+</span><span class=lnt id=hl-13-5><a style=outline:none;text-decoration:none;color:inherit href=#hl-13-5> 5</a>
+</span><span class=lnt id=hl-13-6><a style=outline:none;text-decoration:none;color:inherit href=#hl-13-6> 6</a>
+</span><span class=lnt id=hl-13-7><a style=outline:none;text-decoration:none;color:inherit href=#hl-13-7> 7</a>
+</span><span class=lnt id=hl-13-8><a style=outline:none;text-decoration:none;color:inherit href=#hl-13-8> 8</a>
+</span><span class=lnt id=hl-13-9><a style=outline:none;text-decoration:none;color:inherit href=#hl-13-9> 9</a>
+</span><span class=lnt id=hl-13-10><a style=outline:none;text-decoration:none;color:inherit href=#hl-13-10>10</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>content
+</span></span><span class=line><span class=cl>├─ about.md
+</span></span><span class=line><span class=cl>├─ post
+</span></span><span class=line><span class=cl>│  ├─ 2022
+</span></span><span class=line><span class=cl>│  │  └─ 09
+</span></span><span class=line><span class=cl>│  │     ├─ 001.Hugo博客搭建_1_搭建本地运行环境.md
+</span></span><span class=line><span class=cl>│  │     ├─ 002.Hugo博客搭建_2_Github Action配置 - 副本.md
+</span></span><span class=line><span class=cl>│  │     └─ 003.Hugo博客搭建_3_博客加速和自定义域名.md
+</span></span><span class=line><span class=cl>│  └─ syntax-highlighting.md
+</span></span><span class=line><span class=cl>└─ README.md
+</span></span></code></pre></td></tr></table></div></div><h4 id=自定义图片结构>自定义图片结构</h4><p>文章的图片默认保存在 <code>static\image</code>目录下，和文章一样，时间长了也不容易整理。所以我也是按年月创建目录。</p><p>文章引用图片时有2种方式：</p><ul><li>网络图床，引用时直接使用图片的网络地址，比如：<code>https://ludard.com/image/ludard_logo.png</code></li><li>本地图片，我使用本地图片</li></ul><p>在生成博客时，Hugo 会将 <code>static</code> 下的所有内容都复制到 <code>public</code> 目录下，所以图片保存好之后文章的引用路径就是：</p><p><code>![图片缺省或无法加载时的说明](/image/2022/09/创建日_编号_图片名称.png)</code></p><p>比如：<code>![hugo_started](/image/2022/09/13_01_hugo_started.png)</code></p><blockquote><p>可以把 <code>public</code> 当成根目录 <code>/</code>，图片在Markdown编辑器里无法预览是正常的，网站编译上线后会正常显示的。</p></blockquote><p>图片目录结构：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-14-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-14-1> 1</a>
+</span><span class=lnt id=hl-14-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-14-2> 2</a>
+</span><span class=lnt id=hl-14-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-14-3> 3</a>
+</span><span class=lnt id=hl-14-4><a style=outline:none;text-decoration:none;color:inherit href=#hl-14-4> 4</a>
+</span><span class=lnt id=hl-14-5><a style=outline:none;text-decoration:none;color:inherit href=#hl-14-5> 5</a>
+</span><span class=lnt id=hl-14-6><a style=outline:none;text-decoration:none;color:inherit href=#hl-14-6> 6</a>
+</span><span class=lnt id=hl-14-7><a style=outline:none;text-decoration:none;color:inherit href=#hl-14-7> 7</a>
+</span><span class=lnt id=hl-14-8><a style=outline:none;text-decoration:none;color:inherit href=#hl-14-8> 8</a>
+</span><span class=lnt id=hl-14-9><a style=outline:none;text-decoration:none;color:inherit href=#hl-14-9> 9</a>
+</span><span class=lnt id=hl-14-10><a style=outline:none;text-decoration:none;color:inherit href=#hl-14-10>10</a>
+</span><span class=lnt id=hl-14-11><a style=outline:none;text-decoration:none;color:inherit href=#hl-14-11>11</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>static
+</span></span><span class=line><span class=cl>├─ css
+</span></span><span class=line><span class=cl>│  ├─ manni-code-syntax.css
+</span></span><span class=line><span class=cl>│  └─ revise-style.css
+</span></span><span class=line><span class=cl>└─ image
+</span></span><span class=line><span class=cl>   ├─ 2022
+</span></span><span class=line><span class=cl>   │  └─ 09
+</span></span><span class=line><span class=cl>   │     ├─ 13_01_started.png
+</span></span><span class=line><span class=cl>   │     ├─ 13_02_decompressed.png
+</span></span><span class=line><span class=cl>   │     └─ 13_03_path.png
+</span></span><span class=line><span class=cl>   └─ about_banner.png
+</span></span></code></pre></td></tr></table></div></div><h4 id=只显示文章摘要信息>只显示文章摘要信息</h4><p>如果文章太长，在首页显示时默认显示非常长，可以在想要截断的地方加上 <code>&lt;!--more--></code> 标记做截断，这样首页就只显示标记以上的内容+阅读全文。</p><p><img src=/image/2022/09/13_15_only_view_summary.png alt=only_view_summary></p><p><img src=/image/2022/09/13_15_only_view_summary_2.png alt=only_view_summary></p><h4 id=博客多语言支持>博客多语言支持</h4><p>如果网站要支持多国语言，需要对 <code>languages</code> 进行配置。</p><p>翻译位于 <code>i18n/</code> 文件夹下。</p><p>使用特定的翻译：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-15-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-15-1>1</a>
+</span><span class=lnt id=hl-15-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-15-2>2</a>
+</span><span class=lnt id=hl-15-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-15-3>3</a>
+</span><span class=lnt id=hl-15-4><a style=outline:none;text-decoration:none;color:inherit href=#hl-15-4>4</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=line><span class=cl><span class=c># 使用中文</span>
+</span></span><span class=line><span class=cl><span class=nx>defaultContentLanguage</span> <span class=p>=</span> <span class=s2>&#34;zh-cn&#34;</span>  <span class=c># 默认使用的语言</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=nx>Languages</span><span class=p>.</span><span class=nx>zh-cn</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=nx>languageCode</span> <span class=p>=</span> <span class=s2>&#34;zh-cn&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>有关多语言设置，请查看 <a href=https://gohugo.io/content-management/multilingual/>Multilingual Mode | Hugo</a> 。</p><h4 id=博客主题自定义开发>博客主题自定义开发</h4><p>如果要调整的样式非常多，可以在原有的主题上进行自定义开发。</p><p>使用 <code>npm</code> 安装依赖：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-16-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-16-1>1</a>
+</span><span class=lnt id=hl-16-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-16-2>2</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>npm install
+</span></span><span class=line><span class=cl>npm install
+</span></span></code></pre></td></tr></table></div></div><p>命令会同时运行 <code>webpack --watch</code> 和 <code>hugo server</code> 。 如果你修改了任何文件，浏览器将会自动更新。</p><h3 id=9-hugo-常用命令>9. Hugo 常用命令</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-17-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-1> 1</a>
+</span><span class=lnt id=hl-17-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-2> 2</a>
+</span><span class=lnt id=hl-17-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-3> 3</a>
+</span><span class=lnt id=hl-17-4><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-4> 4</a>
+</span><span class=lnt id=hl-17-5><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-5> 5</a>
+</span><span class=lnt id=hl-17-6><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-6> 6</a>
+</span><span class=lnt id=hl-17-7><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-7> 7</a>
+</span><span class=lnt id=hl-17-8><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-8> 8</a>
+</span><span class=lnt id=hl-17-9><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-9> 9</a>
+</span><span class=lnt id=hl-17-10><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-10>10</a>
+</span><span class=lnt id=hl-17-11><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-11>11</a>
+</span><span class=lnt id=hl-17-12><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-12>12</a>
+</span><span class=lnt id=hl-17-13><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-13>13</a>
+</span><span class=lnt id=hl-17-14><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-14>14</a>
+</span><span class=lnt id=hl-17-15><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-15>15</a>
+</span><span class=lnt id=hl-17-16><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-16>16</a>
+</span><span class=lnt id=hl-17-17><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-17>17</a>
+</span><span class=lnt id=hl-17-18><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-18>18</a>
+</span><span class=lnt id=hl-17-19><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-19>19</a>
+</span><span class=lnt id=hl-17-20><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-20>20</a>
+</span><span class=lnt id=hl-17-21><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-21>21</a>
+</span><span class=lnt id=hl-17-22><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-22>22</a>
+</span><span class=lnt id=hl-17-23><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-23>23</a>
+</span><span class=lnt id=hl-17-24><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-24>24</a>
+</span><span class=lnt id=hl-17-25><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-25>25</a>
+</span><span class=lnt id=hl-17-26><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-26>26</a>
+</span><span class=lnt id=hl-17-27><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-27>27</a>
+</span><span class=lnt id=hl-17-28><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-28>28</a>
+</span><span class=lnt id=hl-17-29><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-29>29</a>
+</span><span class=lnt id=hl-17-30><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-30>30</a>
+</span><span class=lnt id=hl-17-31><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-31>31</a>
+</span><span class=lnt id=hl-17-32><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-32>32</a>
+</span><span class=lnt id=hl-17-33><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-33>33</a>
+</span><span class=lnt id=hl-17-34><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-34>34</a>
+</span><span class=lnt id=hl-17-35><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-35>35</a>
+</span><span class=lnt id=hl-17-36><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-36>36</a>
+</span><span class=lnt id=hl-17-37><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-37>37</a>
+</span><span class=lnt id=hl-17-38><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-38>38</a>
+</span><span class=lnt id=hl-17-39><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-39>39</a>
+</span><span class=lnt id=hl-17-40><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-40>40</a>
+</span><span class=lnt id=hl-17-41><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-41>41</a>
+</span><span class=lnt id=hl-17-42><a style=outline:none;text-decoration:none;color:inherit href=#hl-17-42>42</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1>#更新到最新hugo版本</span>
+</span></span><span class=line><span class=cl>go get -u -v github.com/spf13/hugo
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 查看hugo版本、配置环境、帮助信息</span>
+</span></span><span class=line><span class=cl>hugo version
+</span></span><span class=line><span class=cl>hugo env
+</span></span><span class=line><span class=cl>hugo <span class=nb>help</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># all 列出所有文章 drafts 所有草稿 expired 过期文章 future 将来要发布的文章</span>
+</span></span><span class=line><span class=cl>hugo list all
+</span></span><span class=line><span class=cl>hugo list drafts
+</span></span><span class=line><span class=cl>hugo list expired
+</span></span><span class=line><span class=cl>hugo list future
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 创建 about 页面，about.md 自动生成到了 content/about.md</span>
+</span></span><span class=line><span class=cl>hugo new about.md
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 创建文章，放到 post 目录，方便之后生成聚合页面</span>
+</span></span><span class=line><span class=cl>hugo new post/first.md
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Hugo调试加载指定主题+草稿文章</span>
+</span></span><span class=line><span class=cl>hugo server --theme<span class=o>=</span>hyde --buildDrafts
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 预览时包含草稿文章 启动后在浏览器里打开： http://localhost:1313</span>
+</span></span><span class=line><span class=cl><span class=c1># -D, --buildDrafts 草稿文章 </span>
+</span></span><span class=line><span class=cl><span class=c1># -E, --buildExpired 过期文章</span>
+</span></span><span class=line><span class=cl><span class=c1># -F, --buildFuture 将来要发布的文章</span>
+</span></span><span class=line><span class=cl>hugo server -D
+</span></span><span class=line><span class=cl>hugo server --buildDrafts
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 修改默认端口，指定端口号预览</span>
+</span></span><span class=line><span class=cl>hugo server -p 端口
+</span></span><span class=line><span class=cl>hugo server -p <span class=m>1315</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 加载自定义配置文件 默认path/config.yaml|json|toml</span>
+</span></span><span class=line><span class=cl>hugo serve --config full-config.toml
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 加载指定目录的文章  -c, --contentDir</span>
+</span></span><span class=line><span class=cl>hugo serve -c <span class=s2>&#34;D:\github\hugo-blog-code\themes\jane\exampleSite&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 生成网站，网站内容保存到 `public/` 目录</span>
+</span></span><span class=line><span class=cl>hugo
+</span></span></code></pre></td></tr></table></div></div><blockquote><p>如果在预览网站时发现修改后的图片与<code>static\image</code>的图片不一样，可以删除博客缓存目录再启动调试。</p><p>缓存目录：<code>C:\Users\Ludard\AppData\Local\Temp\hugo_cache\博客名称</code></p><p><code>Ludard</code> 是计算机登录名，替换为自己的登录名</p></blockquote><h3 id=10-生成网站>10. 生成网站</h3><p>使用命令 <code>hugo</code> 生成网站，生成的内容保存在 <code>public/</code> 目录</p><h2 id=参考资源>参考资源</h2><p><a href=https://github.com/ysqi/ysqi.github.io>Config配置参考</a></p><p><a href=https://maintao.com/2021/code-syntax-highlight/>Hugo 代码高亮</a></p><p><a href=https://orianna-zzo.github.io/sci-tech/2018-01/blog%E5%85%BB%E6%88%90%E8%AE%B03-hugo%E7%9A%84%E8%AF%AD%E6%B3%95%E9%AB%98%E4%BA%AE%E9%85%8D%E7%BD%AE/>Hugo的语法高亮配置</a></p><p><a href=https://hugo.aiaide.com/post/%E8%87%AA%E5%AE%9A%E4%B9%89hugo%E4%B8%BB%E9%A2%98-%E5%AF%BC%E8%88%AA%E8%8F%9C%E5%8D%95/>自定义hugo主题-导航菜单</a></p></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
+<span class=item-content>卢达</span></p><p class=copyright-item><span class=item-title>上次更新</span>
+<span class=item-content>2022-09-13</span></p><p class=copyright-item><span class=item-title>许可协议</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh target=_blank>署名-非商业性使用-禁止演绎 4.0 国际许可协议（CC BY-NC-ND 4.0）</a></span></p></div><footer class=post-footer><div class=post-tags><a href=http://ludard.com/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/>博客搭建</a>
+<a href=http://ludard.com/tags/hugo/>Hugo</a></div><nav class=post-nav></nav></footer></article></div></div></main><footer id=footer class=footer><div class=icon-links><a href=mailto:ludard@outlook.com rel="me noopener" class=iconfont title=email><svg class="icon" viewBox="0 0 1451 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36"><path d="M664.781909 681.472759.0 97.881301C0 3.997201 71.046997.0 71.046997.0H474.477909 961.649408h399.992405s71.046998 3.997201 71.046998 97.881301L771.345323 681.472759S764.482731 685.154773 753.594283 688.65053V688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858V688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759zm53.281707 130.131124C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633.0 212.052267.0 212.052267V942.809523S0 1024 83.726336 1024H682.532949 753.579947h595.368192C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523V212.052267S893.138176 701.759633 817.019477 767.734955c-39.771477 34.470494-74.671786 43.295855-98.955861 43.868928z"/></svg></a><a href=https://github.com/ludard rel="me noopener" class=iconfont title=github target=_blank><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36"><path d="M512 12.672c-282.88.0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667.0-12.16-.426667-44.373333-.64-87.04C242.005334 929.664 211.968 830.08 211.968 830.08 188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333.0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333.0.0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667.0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72.0 68.522667-.64 123.562667-.64 140.202666.0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"/></svg></a><a href=http://ludard.com/index.xml rel="noopener alternate" type=application/rss+xml class=iconfont title=rss target=_blank><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30"><path d="M819.157333 1024C819.157333 574.592 449.408 204.8.0 204.8V0c561.706667.0 1024 462.293333 1024 1024H819.157333zM140.416 743.04a140.8 140.8.0 01140.501333 140.586667A140.928 140.928.0 01140.074667 1024C62.72 1024 0 961.109333.0 883.626667S62.933333 743.082667 140.416 743.04zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667v-199.04c372.352.0 678.784 306.517333 678.784 678.826667z"/></svg></a></div><div class=copyright><span class=power-by>Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a></span>
+<span class=division>|</span>
+<span class=theme-info>Theme - <a class=theme-link href=https://github.com/xianmin/hugo-theme-jane>Jane</a></span>
+<span class=copyright-year>&copy;
+2022
+<span class=heart><i class=iconfont><svg class="icon" viewBox="0 0 1025 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="14"><path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7.0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1.0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2.0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3.1-42.5-8-83.6-24-122.2z" fill="#8a8a8a"/></svg></i></span><span class=author>卢达</span></span>
+<span id=busuanzi_container>访客数/访问量：<span id=busuanzi_value_site_uv></span>/<span id=busuanzi_value_site_pv></span></span></div></footer><div class=back-to-top id=back-to-top><i class=iconfont><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35" height="35"><path d="M510.866688 227.694839 95.449397 629.218702h235.761562L329.15309 958.01517h362.40389L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777h894.052392v131.813095H63.840492V63.962777zm0 0"/></svg></i></div></div><script type=text/javascript src=/lib/jquery/jquery-3.2.1.min.js></script>
+<script type=text/javascript src=/lib/slideout/slideout-1.0.1.min.js></script>
+<script type=text/javascript src=/js/main.fe83e11b4fbc9193d67e2c9db78bad21f8dc59fca0cacd8c1c3bb071bb16a852.js integrity="sha256-/oPhG0+8kZPWfiydt4utIfjcWfygys2MHDuwcbsWqFI=" crossorigin=anonymous></script>
+<script type=text/javascript src=/js/load-photoswipe.js></script>
+<script type=text/javascript src=/lib/photoswipe/photoswipe.min.js></script>
+<script type=text/javascript src=/lib/photoswipe/photoswipe-ui-default.min.js></script>
+<script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script></body></html>
