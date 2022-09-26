@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>vercel on 卢达的技术博客 - 专注于C#|Go|DevOps|运维开发</title><link>http://ludard.com/tags/vercel/</link><description>Recent content in vercel on 卢达的技术博客 - 专注于C#|Go|DevOps|运维开发</description><generator>Hugo -- gohugo.io</generator><language>zh</language><copyright>卢达</copyright><lastBuildDate>Mon, 26 Sep 2022 12:39:29 +0800</lastBuildDate><atom:link href="http://ludard.com/tags/vercel/index.xml" rel="self" type="application/rss+xml"/><item><title>「Hugo 博客搭建」3.博客加速和自定义域名</title><link>http://ludard.com/post/tech/create-blog-step-by-step-3/</link><pubDate>Mon, 26 Sep 2022 12:39:29 +0800</pubDate><guid>http://ludard.com/post/tech/create-blog-step-by-step-3/</guid><description>&lt;p>使用 &lt;a href="https://ludard.com/post/tech/create-blog-step-by-step-2/">Github Action 配置&lt;/a> 好就可以写博客并发布了，但是使用 &lt;code>Github Page&lt;/code> 有以下弊端：&lt;/p>
+&lt;ul>
+&lt;li>国内某些地区访问不稳定，速度也时好时坏，所以需要加速一下&lt;/li>
+&lt;li>Github 屏蔽了百度蜘蛛，百度可能无法抓取里面的内容、从而导致网站迟迟不被收录，也无法被搜索&lt;/li>
+&lt;/ul>
+&lt;p>经过搜索对比后发现现在免费的、速度比较快的、方便使用的加速网站有2个：&lt;/p></description></item></channel></rss>
