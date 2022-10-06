@@ -1,0 +1,514 @@
+<!doctype html><html lang=zh itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><title>「Hugo 博客搭建」5.添加全文搜索 - 卢达的技术博客 - 专注于C#|Go|DevOps|运维开发</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,user-scalable=yes"><meta name=MobileOptimized content="width"><meta name=HandheldFriendly content="true"><meta name=applicable-device content="pc,mobile"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=mobile-web-app-capable content="yes"><meta name=author content="卢达"><meta name=description content="给博客添加全文搜索功能"><meta name=keywords content="hugo,博客搭建,blog,Fuse"><meta name=generator content="Hugo 0.104.3"><link rel=canonical href=http://ludard.com/post/tech/create-blog-step-by-step-5/><link rel=icon href=/favicon.ico><link rel=stylesheet href=/sass/jane.min.6aa088348d86326ca4be4205ae9973752a42b2e758c2f5f879a69172441859c9.css integrity="sha256-aqCINI2GMmykvkIFrplzdSpCsudYwvX4eaaRckQYWck=" media=screen crossorigin=anonymous><link rel=stylesheet href=/css/revise-style.css><link rel=stylesheet href=/css/manni-code-syntax.css><meta property="og:title" content="「Hugo 博客搭建」5.添加全文搜索"><meta property="og:description" content="给博客添加全文搜索功能"><meta property="og:type" content="article"><meta property="og:url" content="http://ludard.com/post/tech/create-blog-step-by-step-5/"><meta property="article:section" content="post"><meta property="article:published_time" content="2022-10-06T21:00:31+08:00"><meta property="article:modified_time" content="2022-10-06T21:41:22+08:00"><meta itemprop=name content="「Hugo 博客搭建」5.添加全文搜索"><meta itemprop=description content="给博客添加全文搜索功能"><meta itemprop=datePublished content="2022-10-06T21:00:31+08:00"><meta itemprop=dateModified content="2022-10-06T21:41:22+08:00"><meta itemprop=wordCount content="1725"><meta itemprop=keywords content="博客搭建,Hugo,Fuse,"><meta name=twitter:card content="summary"><meta name=twitter:title content="「Hugo 博客搭建」5.添加全文搜索"><meta name=twitter:description content="给博客添加全文搜索功能"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>卢达的博客</a></div><div class=mobile-navbar-icon><span></span>
+<span></span>
+<span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><li class=mobile-menu-item><a class=menu-item-link href=http://ludard.com/>主页</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://ludard.com/post/>文章列表</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://ludard.com/tags/>标签</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://ludard.com/categories/>分类</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://ludard.com/about/>关于</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://ludard.com/search/>🔍搜索</a></li></ul></nav><link rel=stylesheet href=/lib/photoswipe/photoswipe.min.css><link rel=stylesheet href=/lib/photoswipe/default-skin/default-skin.min.css><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header id=header class="header container"><div class=logo-wrapper><a href=/ class=logo><img src=/image/ludard_logo.png style=vertical-align:text-bottom>
+卢达的博客</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=http://ludard.com/>主页</a></li><li class=menu-item><a class=menu-item-link href=http://ludard.com/post/>文章列表</a></li><li class=menu-item><a class=menu-item-link href=http://ludard.com/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=http://ludard.com/categories/>分类</a></li><li class=menu-item><a class=menu-item-link href=http://ludard.com/about/>关于</a></li><li class=menu-item><a class=menu-item-link href=http://ludard.com/search/>🔍搜索</a></li></ul></nav></header><div id=mobile-panel><main id=main class="main bg-llight wallpaper"><div class=content-wrapper><div id=content class="content container"><article class="post bg-white"><header class=post-header><h1 class=post-title>「Hugo 博客搭建」5.添加全文搜索</h1><div class=post-meta><time datetime=2022-10-06 class=post-time>2022-10-06</time><div class=post-category><a href=http://ludard.com/categories/%E6%8A%80%E6%9C%AF/>技术</a></div><span id=busuanzi_container_page_pv>| 阅读 <span id=busuanzi_value_page_pv></span></span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#fuse-配置><code>Fuse</code> 配置</a><ul><li><a href=#搜索菜单>搜索菜单</a></li><li><a href=#搜索页面>搜索页面</a></li><li><a href=#搜索结果>搜索结果</a></li><li><a href=#搜索操作>搜索操作</a></li><li><a href=#configtoml-配置><code>config.toml</code> 配置</a></li></ul></li><li><a href=#成果展示>成果展示</a></li><li><a href=#参考资源>参考资源</a></li></ul></nav></div></div><div class=post-content><p>提供全文搜索的引擎有很多，但是使用简单、结果准确的只有以下几个：</p><ul><li><a href=https://docs.meilisearch.com/>Meilisearch</a> 免费开源、快速准确、支持中文、使用简单的搜索引擎，如果有服务器非常推荐。</li><li><a href=https://www.algolia.com/>algolia</a> 商业软件，每月免费一万次搜索。适用于小型博客</li><li><a href=https://github.com/krisk/Fuse>Fuse</a> 轻量级的模糊搜索JS库</li></ul><blockquote><p>注意：Hugo 官网提供的 <a href=https://gohugo.io/tools/search/>其它搜索方案</a> 很多都过时了或者不支持中文搜索，比如 <a href=https://www.npmjs.com/package/hugo-lunr-zh>hugo-lunr-zh</a> 5年没更新了。</p></blockquote><p>因为我现在还没有购买服务器，又不想使用商业产品，所以只能使用 <code>Fuse</code>了。</p><p><code>Fuse</code> 有以下优点：</p><ul><li>配置简单、结果准确、支持中文、可以自定义配置</li><li>直接开箱即用，没有其它依赖项，如 <code>npm</code> <code>grunt</code> 等，也不需要上传数据文件</li><li>开发相当活跃，使用人数较多</li></ul><p>当然，也有一些缺点：</p><ul><li>对小型博客类搜索比较快，但中大型比较慢</li><li>搜索结果显示的是博客开头部分而不是高亮匹配的区域，有些不友好</li></ul><p>总体而言，用于博客搜索是够了。</p><h2 id=fuse-配置><code>Fuse</code> 配置</h2><p>因为我使用的 Hugo 主题是 <code>jane</code>，所以搜索页面和JS脚本都放在主题目录下。</p><p>在hugo博客根目录添加4个文件：</p><ul><li><code>content/search.md</code> 在主菜单栏上添加 <code>搜索</code> 菜单</li><li><code>themes/jane/layouts/_default/search.html</code> 搜索页面</li><li><code>themes/jane/layouts/_default/index.json</code> 搜索结果数据格式</li><li><code>static/js/search.js</code> 搜索页面里点击搜索后的操作</li></ul><h3 id=搜索菜单>搜索菜单</h3><p><code>content/search.md</code> 搜索菜单</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-0-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-1> 1</a>
+</span><span class=lnt id=hl-0-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-2> 2</a>
+</span><span class=lnt id=hl-0-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-3> 3</a>
+</span><span class=lnt id=hl-0-4><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-4> 4</a>
+</span><span class=lnt id=hl-0-5><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-5> 5</a>
+</span><span class=lnt id=hl-0-6><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-6> 6</a>
+</span><span class=lnt id=hl-0-7><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-7> 7</a>
+</span><span class=lnt id=hl-0-8><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-8> 8</a>
+</span><span class=lnt id=hl-0-9><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-9> 9</a>
+</span><span class=lnt id=hl-0-10><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-10>10</a>
+</span><span class=lnt id=hl-0-11><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-11>11</a>
+</span><span class=lnt id=hl-0-12><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-12>12</a>
+</span><span class=lnt id=hl-0-13><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-13>13</a>
+</span><span class=lnt id=hl-0-14><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-14>14</a>
+</span><span class=lnt id=hl-0-15><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-15>15</a>
+</span><span class=lnt id=hl-0-16><a style=outline:none;text-decoration:none;color:inherit href=#hl-0-16>16</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>---
+</span></span><span class=line><span class=cl>title: &#34;🔍搜索&#34;
+</span></span><span class=line><span class=cl>sitemap:
+</span></span><span class=line><span class=cl>    priority : 0.1
+</span></span><span class=line><span class=cl>layout: &#34;search&#34;
+</span></span><span class=line><span class=cl>menu: &#34;main&#34;
+</span></span><span class=line><span class=cl>slug: search
+</span></span><span class=line><span class=cl>---
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>This file exists solely to respond to /search URL with the related <span class=sb>`search`</span> layout template.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>No content shown here is rendered, all content is based in the template layouts/page/search.html
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Setting a very low sitemap priority will tell search engines this is not important content.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>This implementation uses Fusejs, jquery and mark.js
+</span></span></code></pre></td></tr></table></div></div><h3 id=搜索页面>搜索页面</h3><p><code>themes/jane/layouts/_default/search.html</code> 搜索页面</p><p>为了搜索页面和博客文章风格保持一致，所以定制了一些样式。如果想定制可以参考同目录下 <code>baseof.html</code> 文件的格式。</p><blockquote><p>注意：最核心的搜索组件 <code>fuse.js</code> 经我测试后最好不要使用最新的 <code>6.x</code> 版本，因为新版本只能搜索 <code>post</code> 目录的内容，其它目录的内容无法搜索。而且搜索结果顺序有点乱。</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-1-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-1>  1</a>
+</span><span class=lnt id=hl-1-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-2>  2</a>
+</span><span class=lnt id=hl-1-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-3>  3</a>
+</span><span class=lnt id=hl-1-4><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-4>  4</a>
+</span><span class=lnt id=hl-1-5><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-5>  5</a>
+</span><span class=lnt id=hl-1-6><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-6>  6</a>
+</span><span class=lnt id=hl-1-7><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-7>  7</a>
+</span><span class=lnt id=hl-1-8><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-8>  8</a>
+</span><span class=lnt id=hl-1-9><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-9>  9</a>
+</span><span class=lnt id=hl-1-10><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-10> 10</a>
+</span><span class=lnt id=hl-1-11><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-11> 11</a>
+</span><span class=lnt id=hl-1-12><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-12> 12</a>
+</span><span class=lnt id=hl-1-13><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-13> 13</a>
+</span><span class=lnt id=hl-1-14><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-14> 14</a>
+</span><span class=lnt id=hl-1-15><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-15> 15</a>
+</span><span class=lnt id=hl-1-16><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-16> 16</a>
+</span><span class=lnt id=hl-1-17><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-17> 17</a>
+</span><span class=lnt id=hl-1-18><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-18> 18</a>
+</span><span class=lnt id=hl-1-19><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-19> 19</a>
+</span><span class=lnt id=hl-1-20><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-20> 20</a>
+</span><span class=lnt id=hl-1-21><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-21> 21</a>
+</span><span class=lnt id=hl-1-22><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-22> 22</a>
+</span><span class=lnt id=hl-1-23><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-23> 23</a>
+</span><span class=lnt id=hl-1-24><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-24> 24</a>
+</span><span class=lnt id=hl-1-25><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-25> 25</a>
+</span><span class=lnt id=hl-1-26><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-26> 26</a>
+</span><span class=lnt id=hl-1-27><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-27> 27</a>
+</span><span class=lnt id=hl-1-28><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-28> 28</a>
+</span><span class=lnt id=hl-1-29><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-29> 29</a>
+</span><span class=lnt id=hl-1-30><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-30> 30</a>
+</span><span class=lnt id=hl-1-31><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-31> 31</a>
+</span><span class=lnt id=hl-1-32><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-32> 32</a>
+</span><span class=lnt id=hl-1-33><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-33> 33</a>
+</span><span class=lnt id=hl-1-34><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-34> 34</a>
+</span><span class=lnt id=hl-1-35><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-35> 35</a>
+</span><span class=lnt id=hl-1-36><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-36> 36</a>
+</span><span class=lnt id=hl-1-37><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-37> 37</a>
+</span><span class=lnt id=hl-1-38><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-38> 38</a>
+</span><span class=lnt id=hl-1-39><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-39> 39</a>
+</span><span class=lnt id=hl-1-40><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-40> 40</a>
+</span><span class=lnt id=hl-1-41><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-41> 41</a>
+</span><span class=lnt id=hl-1-42><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-42> 42</a>
+</span><span class=lnt id=hl-1-43><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-43> 43</a>
+</span><span class=lnt id=hl-1-44><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-44> 44</a>
+</span><span class=lnt id=hl-1-45><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-45> 45</a>
+</span><span class=lnt id=hl-1-46><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-46> 46</a>
+</span><span class=lnt id=hl-1-47><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-47> 47</a>
+</span><span class=lnt id=hl-1-48><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-48> 48</a>
+</span><span class=lnt id=hl-1-49><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-49> 49</a>
+</span><span class=lnt id=hl-1-50><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-50> 50</a>
+</span><span class=lnt id=hl-1-51><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-51> 51</a>
+</span><span class=lnt id=hl-1-52><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-52> 52</a>
+</span><span class=lnt id=hl-1-53><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-53> 53</a>
+</span><span class=lnt id=hl-1-54><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-54> 54</a>
+</span><span class=lnt id=hl-1-55><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-55> 55</a>
+</span><span class=lnt id=hl-1-56><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-56> 56</a>
+</span><span class=lnt id=hl-1-57><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-57> 57</a>
+</span><span class=lnt id=hl-1-58><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-58> 58</a>
+</span><span class=lnt id=hl-1-59><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-59> 59</a>
+</span><span class=lnt id=hl-1-60><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-60> 60</a>
+</span><span class=lnt id=hl-1-61><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-61> 61</a>
+</span><span class=lnt id=hl-1-62><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-62> 62</a>
+</span><span class=lnt id=hl-1-63><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-63> 63</a>
+</span><span class=lnt id=hl-1-64><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-64> 64</a>
+</span><span class=lnt id=hl-1-65><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-65> 65</a>
+</span><span class=lnt id=hl-1-66><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-66> 66</a>
+</span><span class=lnt id=hl-1-67><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-67> 67</a>
+</span><span class=lnt id=hl-1-68><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-68> 68</a>
+</span><span class=lnt id=hl-1-69><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-69> 69</a>
+</span><span class=lnt id=hl-1-70><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-70> 70</a>
+</span><span class=lnt id=hl-1-71><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-71> 71</a>
+</span><span class=lnt id=hl-1-72><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-72> 72</a>
+</span><span class=lnt id=hl-1-73><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-73> 73</a>
+</span><span class=lnt id=hl-1-74><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-74> 74</a>
+</span><span class=lnt id=hl-1-75><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-75> 75</a>
+</span><span class=lnt id=hl-1-76><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-76> 76</a>
+</span><span class=lnt id=hl-1-77><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-77> 77</a>
+</span><span class=lnt id=hl-1-78><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-78> 78</a>
+</span><span class=lnt id=hl-1-79><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-79> 79</a>
+</span><span class=lnt id=hl-1-80><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-80> 80</a>
+</span><span class=lnt id=hl-1-81><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-81> 81</a>
+</span><span class=lnt id=hl-1-82><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-82> 82</a>
+</span><span class=lnt id=hl-1-83><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-83> 83</a>
+</span><span class=lnt id=hl-1-84><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-84> 84</a>
+</span><span class=lnt id=hl-1-85><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-85> 85</a>
+</span><span class=lnt id=hl-1-86><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-86> 86</a>
+</span><span class=lnt id=hl-1-87><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-87> 87</a>
+</span><span class=lnt id=hl-1-88><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-88> 88</a>
+</span><span class=lnt id=hl-1-89><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-89> 89</a>
+</span><span class=lnt id=hl-1-90><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-90> 90</a>
+</span><span class=lnt id=hl-1-91><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-91> 91</a>
+</span><span class=lnt id=hl-1-92><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-92> 92</a>
+</span><span class=lnt id=hl-1-93><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-93> 93</a>
+</span><span class=lnt id=hl-1-94><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-94> 94</a>
+</span><span class=lnt id=hl-1-95><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-95> 95</a>
+</span><span class=lnt id=hl-1-96><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-96> 96</a>
+</span><span class=lnt id=hl-1-97><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-97> 97</a>
+</span><span class=lnt id=hl-1-98><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-98> 98</a>
+</span><span class=lnt id=hl-1-99><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-99> 99</a>
+</span><span class=lnt id=hl-1-100><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-100>100</a>
+</span><span class=lnt id=hl-1-101><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-101>101</a>
+</span><span class=lnt id=hl-1-102><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-102>102</a>
+</span><span class=lnt id=hl-1-103><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-103>103</a>
+</span><span class=lnt id=hl-1-104><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-104>104</a>
+</span><span class=lnt id=hl-1-105><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-105>105</a>
+</span><span class=lnt id=hl-1-106><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-106>106</a>
+</span><span class=lnt id=hl-1-107><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-107>107</a>
+</span><span class=lnt id=hl-1-108><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-108>108</a>
+</span><span class=lnt id=hl-1-109><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-109>109</a>
+</span><span class=lnt id=hl-1-110><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-110>110</a>
+</span><span class=lnt id=hl-1-111><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-111>111</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>script</span> <span class=na>src</span><span class=o>=</span><span class=s>&#34;https://code.jquery.com/jquery-3.3.1.min.js&#34;</span><span class=p>&gt;&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>script</span> <span class=na>src</span><span class=o>=</span><span class=s>&#34;https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.0/fuse.min.js&#34;</span><span class=p>&gt;&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>script</span> <span class=na>src</span><span class=o>=</span><span class=s>&#34;https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js&#34;</span><span class=p>&gt;&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>script</span> <span class=na>src</span><span class=o>=</span><span class=s>&#34;{{ &#34;</span><span class=na>js</span><span class=err>/</span><span class=na>search</span><span class=err>.</span><span class=na>js</span><span class=err>&#34;</span> <span class=err>|</span> <span class=na>absURL</span> <span class=err>}}&#34;</span><span class=p>&gt;&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>head</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>meta</span> <span class=na>charset</span><span class=o>=</span><span class=s>&#34;utf-8&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>meta</span> <span class=na>http-equiv</span><span class=o>=</span><span class=s>&#34;X-UA-Compatible&#34;</span> <span class=na>content</span><span class=o>=</span><span class=s>&#34;IE=edge&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>title</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    {{- block &#34;title&#34; . -}}
+</span></span><span class=line><span class=cl>      {{ if .IsPage }}{{ .Title }} - {{ .Site.Title }}{{ else }}{{ .Site.Title }}{{ end }}
+</span></span><span class=line><span class=cl>    {{- end -}}
+</span></span><span class=line><span class=cl>  <span class=p>&lt;/</span><span class=nt>title</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  {{ partial &#34;head.html&#34; . }}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>style</span> <span class=na>type</span><span class=o>=</span><span class=s>&#34;text/css&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>.</span><span class=nc>search-container</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>padding</span><span class=p>:</span> <span class=mi>3</span><span class=kt>em</span> <span class=mi>5</span><span class=kt>em</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>margin</span><span class=p>:</span> <span class=mi>0</span> <span class=mi>5</span><span class=kt>em</span> <span class=mi>3</span><span class=kt>em</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>background-color</span><span class=p>:</span> <span class=mh>#fff</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=p>#</span><span class=nn>search-box</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>width</span><span class=p>:</span><span class=mi>71</span><span class=kt>%</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>height</span><span class=p>:</span><span class=mi>40</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>border</span><span class=p>:</span><span class=mi>2</span><span class=kt>px</span> <span class=kc>solid</span> <span class=mh>#E58F38</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>margin</span><span class=p>:</span><span class=kc>auto</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=p>#</span><span class=nn>search-query</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>float</span><span class=p>:</span><span class=kc>left</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>width</span><span class=p>:</span><span class=mi>80</span><span class=kt>%</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>height</span><span class=p>:</span><span class=mi>100</span><span class=kt>%</span><span class=p>;</span><span class=c>/*高38（因为文本框内外边框要占用1像素所以总体高度减2，其他盒子同理）*/</span>
+</span></span><span class=line><span class=cl>      <span class=k>outline</span><span class=p>:</span><span class=kc>none</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>border</span><span class=p>:</span><span class=kc>none</span><span class=p>;</span><span class=c>/*取消文本框内外边框*/</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=p>#</span><span class=nn>search-submit</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>float</span><span class=p>:</span><span class=kc>left</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>text-align</span><span class=p>:</span> <span class=kc>center</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>width</span><span class=p>:</span><span class=mi>20</span><span class=kt>%</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>height</span><span class=p>:</span><span class=mi>100</span><span class=kt>%</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>color</span><span class=p>:</span><span class=kc>white</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>background-color</span><span class=p>:</span><span class=mh>#E58F38</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>border</span><span class=p>:</span><span class=kc>none</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>outline</span><span class=p>:</span><span class=kc>none</span><span class=p>;</span><span class=c>/*取消边框和外边框将按钮边框去掉*/</span>
+</span></span><span class=line><span class=cl>      <span class=k>cursor</span><span class=p>:</span> <span class=kc>pointer</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;/</span><span class=nt>style</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>header</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>body</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  {{ partial &#34;slideout.html&#34; . }}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  {{ if or .Site.Params.photoswipe .Site.Params.fancybox }}
+</span></span><span class=line><span class=cl>    {{ partial &#34;photoswipe.html&#34; . }}
+</span></span><span class=line><span class=cl>  {{ end }}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  {{ if .Site.Params.search.google.enable }}
+</span></span><span class=line><span class=cl>    {{ partial &#34;search_google.html&#34; . }}
+</span></span><span class=line><span class=cl>  {{ end }}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>header</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;header&#34;</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;header container&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    {{ partial &#34;header.html&#34; . }}
+</span></span><span class=line><span class=cl>  <span class=p>&lt;/</span><span class=nt>header</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>div</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;mobile-panel&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>section</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;resume-section p-3 p-lg-5 d-flex flex-column&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>      <span class=p>&lt;</span><span class=nt>main</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;main&#34;</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;main bg-llight wallpaper&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;content-wrapper&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>          <span class=p>&lt;</span><span class=nt>div</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;content&#34;</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;content container&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;search-container&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>              <span class=p>&lt;</span><span class=nt>form</span> <span class=na>action</span><span class=o>=</span><span class=s>&#34;{{ &#34;</span><span class=na>search</span><span class=err>&#34;</span> <span class=err>|</span> <span class=na>absURL</span> <span class=err>}}&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>                <span class=p>&lt;</span><span class=nt>div</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;search-box&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>                  <span class=p>&lt;</span><span class=nt>input</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;search-query&#34;</span> <span class=na>name</span><span class=o>=</span><span class=s>&#34;s&#34;</span> <span class=na>placeholder</span><span class=o>=</span><span class=s>&#34;输入搜索内容...&#34;</span> <span class=p>/&gt;</span>
+</span></span><span class=line><span class=cl>                  <span class=p>&lt;</span><span class=nt>button</span> <span class=na>type</span><span class=o>=</span><span class=s>&#34;submit&#34;</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;search-submit&#34;</span> <span class=na>action</span><span class=o>=</span><span class=s>&#34;{{ &#34;</span><span class=na>search</span><span class=err>&#34;</span> <span class=err>|</span> <span class=na>absURL</span> <span class=err>}}&#34;</span><span class=p>&gt;</span>搜索<span class=p>&lt;/</span><span class=nt>button</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>                <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>              <span class=p>&lt;/</span><span class=nt>form</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>              <span class=p>&lt;</span><span class=nt>div</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;search-results&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>              <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>          <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>      <span class=p>&lt;/</span><span class=nt>main</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>      <span class=p>&lt;</span><span class=nt>footer</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;footer&#34;</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;footer&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>        {{ partial &#34;footer.html&#34; . }}
+</span></span><span class=line><span class=cl>      <span class=p>&lt;/</span><span class=nt>footer</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>      <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;back-to-top&#34;</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;back-to-top&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=p>&lt;</span><span class=nt>i</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;iconfont&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>          {{/* icon up */}}
+</span></span><span class=line><span class=cl>          {{ partial &#34;svg/up.svg&#34; }}
+</span></span><span class=line><span class=cl>        <span class=p>&lt;/</span><span class=nt>i</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>      <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;/</span><span class=nt>section</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c>&lt;!-- this template is sucked in by search.js and appended to the search-results div above. So editing here will adjust style --&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>script</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;search-result-template&#34;</span> <span class=na>type</span><span class=o>=</span><span class=s>&#34;text/x-js-template&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=o>&lt;</span><span class=nx>div</span> <span class=nx>id</span><span class=o>=</span><span class=s2>&#34;summary-${key}&#34;</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl>      <span class=o>&lt;</span><span class=nx>h4</span><span class=o>&gt;&lt;</span><span class=nx>a</span> <span class=nx>href</span><span class=o>=</span><span class=s2>&#34;${link}&#34;</span><span class=o>&gt;</span><span class=nx>$</span><span class=p>{</span><span class=nx>title</span><span class=p>}</span><span class=o>&lt;</span><span class=err>/a&gt;&lt;/h4&gt;</span>
+</span></span><span class=line><span class=cl>      <span class=o>&lt;</span><span class=nx>p</span><span class=o>&gt;</span><span class=nx>$</span><span class=p>{</span><span class=nx>snippet</span><span class=p>}</span><span class=o>&lt;</span><span class=err>/p&gt;</span>
+</span></span><span class=line><span class=cl>      <span class=nx>$</span><span class=p>{</span> <span class=nx>isset</span> <span class=nx>tags</span> <span class=p>}</span><span class=o>&lt;</span><span class=nx>p</span><span class=o>&gt;</span><span class=nx>Tags</span><span class=o>:</span> <span class=nx>$</span><span class=p>{</span><span class=nx>tags</span><span class=p>}</span><span class=o>&lt;</span><span class=err>/p&gt;${ end }</span>
+</span></span><span class=line><span class=cl>      <span class=nx>$</span><span class=p>{</span> <span class=nx>isset</span> <span class=nx>categories</span> <span class=p>}</span><span class=o>&lt;</span><span class=nx>p</span><span class=o>&gt;</span><span class=nx>Categories</span><span class=o>:</span> <span class=nx>$</span><span class=p>{</span><span class=nx>categories</span><span class=p>}</span><span class=o>&lt;</span><span class=err>/p&gt;${ end }</span>
+</span></span><span class=line><span class=cl>    <span class=o>&lt;</span><span class=err>/div&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=nb>document</span><span class=p>.</span><span class=nx>getElementById</span><span class=p>(</span><span class=s1>&#39;search-query&#39;</span><span class=p>).</span><span class=nx>focus</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=搜索结果>搜索结果</h3><p><code>themes/jane/layouts/_default/index.json</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-2-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-2-1>1</a>
+</span><span class=lnt id=hl-2-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-2-2>2</a>
+</span><span class=lnt id=hl-2-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-2-3>3</a>
+</span><span class=lnt id=hl-2-4><a style=outline:none;text-decoration:none;color:inherit href=#hl-2-4>4</a>
+</span><span class=lnt id=hl-2-5><a style=outline:none;text-decoration:none;color:inherit href=#hl-2-5>5</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span><span class=err>{-</span> <span class=err>$.Scratch.Add</span> <span class=nt>&#34;index&#34;</span> <span class=err>slice</span> <span class=err>-</span><span class=p>}</span><span class=err>}</span>
+</span></span><span class=line><span class=cl><span class=p>{</span><span class=err>{-</span> <span class=err>range</span> <span class=err>.Site.RegularPages</span> <span class=err>-</span><span class=p>}</span><span class=err>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span><span class=err>{-</span> <span class=err>$.Scratch.Add</span> <span class=nt>&#34;index&#34;</span> <span class=err>(dict</span> <span class=s2>&#34;title&#34;</span> <span class=err>.Title</span> <span class=s2>&#34;tags&#34;</span> <span class=err>.Params.tags</span> <span class=s2>&#34;categories&#34;</span> <span class=err>.Params.categories</span> <span class=s2>&#34;contents&#34;</span> <span class=err>.Plain</span> <span class=s2>&#34;permalink&#34;</span> <span class=err>.Permalink)</span> <span class=err>-</span><span class=p>}</span><span class=err>}</span>
+</span></span><span class=line><span class=cl><span class=p>{</span><span class=err>{-</span> <span class=err>end</span> <span class=err>-</span><span class=p>}</span><span class=err>}</span>
+</span></span><span class=line><span class=cl><span class=p>{</span><span class=err>{-</span> <span class=err>$.Scratch.Get</span> <span class=nt>&#34;index&#34;</span> <span class=err>|</span> <span class=err>jsonify</span> <span class=err>-</span><span class=p>}</span><span class=err>}</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=搜索操作>搜索操作</h3><p><code>static/js/search.js</code> 操作脚本</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-3-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-1>  1</a>
+</span><span class=lnt id=hl-3-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-2>  2</a>
+</span><span class=lnt id=hl-3-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-3>  3</a>
+</span><span class=lnt id=hl-3-4><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-4>  4</a>
+</span><span class=lnt id=hl-3-5><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-5>  5</a>
+</span><span class=lnt id=hl-3-6><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-6>  6</a>
+</span><span class=lnt id=hl-3-7><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-7>  7</a>
+</span><span class=lnt id=hl-3-8><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-8>  8</a>
+</span><span class=lnt id=hl-3-9><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-9>  9</a>
+</span><span class=lnt id=hl-3-10><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-10> 10</a>
+</span><span class=lnt id=hl-3-11><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-11> 11</a>
+</span><span class=lnt id=hl-3-12><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-12> 12</a>
+</span><span class=lnt id=hl-3-13><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-13> 13</a>
+</span><span class=lnt id=hl-3-14><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-14> 14</a>
+</span><span class=lnt id=hl-3-15><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-15> 15</a>
+</span><span class=lnt id=hl-3-16><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-16> 16</a>
+</span><span class=lnt id=hl-3-17><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-17> 17</a>
+</span><span class=lnt id=hl-3-18><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-18> 18</a>
+</span><span class=lnt id=hl-3-19><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-19> 19</a>
+</span><span class=lnt id=hl-3-20><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-20> 20</a>
+</span><span class=lnt id=hl-3-21><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-21> 21</a>
+</span><span class=lnt id=hl-3-22><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-22> 22</a>
+</span><span class=lnt id=hl-3-23><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-23> 23</a>
+</span><span class=lnt id=hl-3-24><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-24> 24</a>
+</span><span class=lnt id=hl-3-25><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-25> 25</a>
+</span><span class=lnt id=hl-3-26><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-26> 26</a>
+</span><span class=lnt id=hl-3-27><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-27> 27</a>
+</span><span class=lnt id=hl-3-28><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-28> 28</a>
+</span><span class=lnt id=hl-3-29><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-29> 29</a>
+</span><span class=lnt id=hl-3-30><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-30> 30</a>
+</span><span class=lnt id=hl-3-31><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-31> 31</a>
+</span><span class=lnt id=hl-3-32><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-32> 32</a>
+</span><span class=lnt id=hl-3-33><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-33> 33</a>
+</span><span class=lnt id=hl-3-34><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-34> 34</a>
+</span><span class=lnt id=hl-3-35><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-35> 35</a>
+</span><span class=lnt id=hl-3-36><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-36> 36</a>
+</span><span class=lnt id=hl-3-37><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-37> 37</a>
+</span><span class=lnt id=hl-3-38><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-38> 38</a>
+</span><span class=lnt id=hl-3-39><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-39> 39</a>
+</span><span class=lnt id=hl-3-40><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-40> 40</a>
+</span><span class=lnt id=hl-3-41><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-41> 41</a>
+</span><span class=lnt id=hl-3-42><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-42> 42</a>
+</span><span class=lnt id=hl-3-43><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-43> 43</a>
+</span><span class=lnt id=hl-3-44><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-44> 44</a>
+</span><span class=lnt id=hl-3-45><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-45> 45</a>
+</span><span class=lnt id=hl-3-46><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-46> 46</a>
+</span><span class=lnt id=hl-3-47><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-47> 47</a>
+</span><span class=lnt id=hl-3-48><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-48> 48</a>
+</span><span class=lnt id=hl-3-49><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-49> 49</a>
+</span><span class=lnt id=hl-3-50><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-50> 50</a>
+</span><span class=lnt id=hl-3-51><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-51> 51</a>
+</span><span class=lnt id=hl-3-52><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-52> 52</a>
+</span><span class=lnt id=hl-3-53><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-53> 53</a>
+</span><span class=lnt id=hl-3-54><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-54> 54</a>
+</span><span class=lnt id=hl-3-55><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-55> 55</a>
+</span><span class=lnt id=hl-3-56><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-56> 56</a>
+</span><span class=lnt id=hl-3-57><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-57> 57</a>
+</span><span class=lnt id=hl-3-58><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-58> 58</a>
+</span><span class=lnt id=hl-3-59><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-59> 59</a>
+</span><span class=lnt id=hl-3-60><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-60> 60</a>
+</span><span class=lnt id=hl-3-61><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-61> 61</a>
+</span><span class=lnt id=hl-3-62><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-62> 62</a>
+</span><span class=lnt id=hl-3-63><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-63> 63</a>
+</span><span class=lnt id=hl-3-64><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-64> 64</a>
+</span><span class=lnt id=hl-3-65><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-65> 65</a>
+</span><span class=lnt id=hl-3-66><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-66> 66</a>
+</span><span class=lnt id=hl-3-67><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-67> 67</a>
+</span><span class=lnt id=hl-3-68><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-68> 68</a>
+</span><span class=lnt id=hl-3-69><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-69> 69</a>
+</span><span class=lnt id=hl-3-70><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-70> 70</a>
+</span><span class=lnt id=hl-3-71><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-71> 71</a>
+</span><span class=lnt id=hl-3-72><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-72> 72</a>
+</span><span class=lnt id=hl-3-73><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-73> 73</a>
+</span><span class=lnt id=hl-3-74><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-74> 74</a>
+</span><span class=lnt id=hl-3-75><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-75> 75</a>
+</span><span class=lnt id=hl-3-76><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-76> 76</a>
+</span><span class=lnt id=hl-3-77><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-77> 77</a>
+</span><span class=lnt id=hl-3-78><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-78> 78</a>
+</span><span class=lnt id=hl-3-79><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-79> 79</a>
+</span><span class=lnt id=hl-3-80><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-80> 80</a>
+</span><span class=lnt id=hl-3-81><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-81> 81</a>
+</span><span class=lnt id=hl-3-82><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-82> 82</a>
+</span><span class=lnt id=hl-3-83><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-83> 83</a>
+</span><span class=lnt id=hl-3-84><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-84> 84</a>
+</span><span class=lnt id=hl-3-85><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-85> 85</a>
+</span><span class=lnt id=hl-3-86><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-86> 86</a>
+</span><span class=lnt id=hl-3-87><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-87> 87</a>
+</span><span class=lnt id=hl-3-88><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-88> 88</a>
+</span><span class=lnt id=hl-3-89><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-89> 89</a>
+</span><span class=lnt id=hl-3-90><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-90> 90</a>
+</span><span class=lnt id=hl-3-91><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-91> 91</a>
+</span><span class=lnt id=hl-3-92><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-92> 92</a>
+</span><span class=lnt id=hl-3-93><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-93> 93</a>
+</span><span class=lnt id=hl-3-94><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-94> 94</a>
+</span><span class=lnt id=hl-3-95><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-95> 95</a>
+</span><span class=lnt id=hl-3-96><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-96> 96</a>
+</span><span class=lnt id=hl-3-97><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-97> 97</a>
+</span><span class=lnt id=hl-3-98><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-98> 98</a>
+</span><span class=lnt id=hl-3-99><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-99> 99</a>
+</span><span class=lnt id=hl-3-100><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-100>100</a>
+</span><span class=lnt id=hl-3-101><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-101>101</a>
+</span><span class=lnt id=hl-3-102><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-102>102</a>
+</span><span class=lnt id=hl-3-103><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-103>103</a>
+</span><span class=lnt id=hl-3-104><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-104>104</a>
+</span><span class=lnt id=hl-3-105><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-105>105</a>
+</span><span class=lnt id=hl-3-106><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-106>106</a>
+</span><span class=lnt id=hl-3-107><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-107>107</a>
+</span><span class=lnt id=hl-3-108><a style=outline:none;text-decoration:none;color:inherit href=#hl-3-108>108</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>summaryInclude</span><span class=o>=</span><span class=mi>60</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>fuseOptions</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>shouldSort</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>includeMatches</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// threshold: 0.0,
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>threshold</span><span class=o>:</span> <span class=mf>0.3</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>tokenize</span><span class=o>:</span><span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>location</span><span class=o>:</span> <span class=mi>0</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>distance</span><span class=o>:</span> <span class=mi>100</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>maxPatternLength</span><span class=o>:</span> <span class=mi>32</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>minMatchCharLength</span><span class=o>:</span> <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>keys</span><span class=o>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span><span class=nx>name</span><span class=o>:</span><span class=s2>&#34;title&#34;</span><span class=p>,</span><span class=nx>weight</span><span class=o>:</span><span class=mf>0.8</span><span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span><span class=nx>name</span><span class=o>:</span><span class=s2>&#34;contents&#34;</span><span class=p>,</span><span class=nx>weight</span><span class=o>:</span><span class=mf>0.5</span><span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span><span class=nx>name</span><span class=o>:</span><span class=s2>&#34;tags&#34;</span><span class=p>,</span><span class=nx>weight</span><span class=o>:</span><span class=mf>0.3</span><span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// , {name:&#34;categories&#34;,weight:0.3}
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>searchQuery</span> <span class=o>=</span> <span class=nx>param</span><span class=p>(</span><span class=s2>&#34;s&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=k>if</span><span class=p>(</span><span class=nx>searchQuery</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>  <span class=nx>$</span><span class=p>(</span><span class=s2>&#34;#search-query&#34;</span><span class=p>).</span><span class=nx>val</span><span class=p>(</span><span class=nx>searchQuery</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nx>executeSearch</span><span class=p>(</span><span class=nx>searchQuery</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span><span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>$</span><span class=p>(</span><span class=s1>&#39;#search-results&#39;</span><span class=p>).</span><span class=nx>append</span><span class=p>(</span><span class=s2>&#34;&lt;p&gt;Please enter a word or phrase above&lt;/p&gt;&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>executeSearch</span><span class=p>(</span><span class=nx>searchQuery</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>  <span class=nx>$</span><span class=p>.</span><span class=nx>getJSON</span><span class=p>(</span> <span class=s2>&#34;/index.json&#34;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span> <span class=nx>data</span> <span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>pages</span> <span class=o>=</span> <span class=nx>data</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>fuse</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Fuse</span><span class=p>(</span><span class=nx>pages</span><span class=p>,</span> <span class=nx>fuseOptions</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>result</span> <span class=o>=</span> <span class=nx>fuse</span><span class=p>.</span><span class=nx>search</span><span class=p>(</span><span class=nx>searchQuery</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>({</span><span class=s2>&#34;matches&#34;</span><span class=o>:</span><span class=nx>result</span><span class=p>});</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=nx>result</span><span class=p>.</span><span class=nx>length</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>      <span class=nx>populateResults</span><span class=p>(</span><span class=nx>result</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span><span class=k>else</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>$</span><span class=p>(</span><span class=s1>&#39;#search-results&#39;</span><span class=p>).</span><span class=nx>append</span><span class=p>(</span><span class=s2>&#34;&lt;p&gt;No matches found&lt;/p&gt;&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>populateResults</span><span class=p>(</span><span class=nx>result</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>  <span class=nx>$</span><span class=p>.</span><span class=nx>each</span><span class=p>(</span><span class=nx>result</span><span class=p>,</span><span class=kd>function</span><span class=p>(</span><span class=nx>key</span><span class=p>,</span><span class=nx>value</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>contents</span><span class=o>=</span> <span class=nx>value</span><span class=p>.</span><span class=nx>item</span><span class=p>.</span><span class=nx>contents</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>snippet</span> <span class=o>=</span> <span class=s2>&#34;&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>snippetHighlights</span><span class=o>=</span><span class=p>[];</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>tags</span> <span class=o>=</span><span class=p>[];</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span> <span class=nx>fuseOptions</span><span class=p>.</span><span class=nx>tokenize</span> <span class=p>){</span>
+</span></span><span class=line><span class=cl>      <span class=nx>snippetHighlights</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=nx>searchQuery</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span><span class=k>else</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>$</span><span class=p>.</span><span class=nx>each</span><span class=p>(</span><span class=nx>value</span><span class=p>.</span><span class=nx>matches</span><span class=p>,</span><span class=kd>function</span><span class=p>(</span><span class=nx>matchKey</span><span class=p>,</span><span class=nx>mvalue</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=nx>mvalue</span><span class=p>.</span><span class=nx>key</span> <span class=o>==</span> <span class=s2>&#34;tags&#34;</span> <span class=o>||</span> <span class=nx>mvalue</span><span class=p>.</span><span class=nx>key</span> <span class=o>==</span> <span class=s2>&#34;categories&#34;</span> <span class=p>){</span>
+</span></span><span class=line><span class=cl>          <span class=nx>snippetHighlights</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=nx>mvalue</span><span class=p>.</span><span class=nx>value</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span><span class=k>else</span> <span class=k>if</span><span class=p>(</span><span class=nx>mvalue</span><span class=p>.</span><span class=nx>key</span> <span class=o>==</span> <span class=s2>&#34;contents&#34;</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>          <span class=nx>start</span> <span class=o>=</span> <span class=nx>mvalue</span><span class=p>.</span><span class=nx>indices</span><span class=p>[</span><span class=mi>0</span><span class=p>][</span><span class=mi>0</span><span class=p>]</span><span class=o>-</span><span class=nx>summaryInclude</span><span class=o>&gt;</span><span class=mi>0</span><span class=o>?</span><span class=nx>mvalue</span><span class=p>.</span><span class=nx>indices</span><span class=p>[</span><span class=mi>0</span><span class=p>][</span><span class=mi>0</span><span class=p>]</span><span class=o>-</span><span class=nx>summaryInclude</span><span class=o>:</span><span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>          <span class=nx>end</span> <span class=o>=</span> <span class=nx>mvalue</span><span class=p>.</span><span class=nx>indices</span><span class=p>[</span><span class=mi>0</span><span class=p>][</span><span class=mi>1</span><span class=p>]</span><span class=o>+</span><span class=nx>summaryInclude</span><span class=o>&lt;</span><span class=nx>contents</span><span class=p>.</span><span class=nx>length</span><span class=o>?</span><span class=nx>mvalue</span><span class=p>.</span><span class=nx>indices</span><span class=p>[</span><span class=mi>0</span><span class=p>][</span><span class=mi>1</span><span class=p>]</span><span class=o>+</span><span class=nx>summaryInclude</span><span class=o>:</span><span class=nx>contents</span><span class=p>.</span><span class=nx>length</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>          <span class=nx>snippet</span> <span class=o>+=</span> <span class=nx>contents</span><span class=p>.</span><span class=nx>substring</span><span class=p>(</span><span class=nx>start</span><span class=p>,</span><span class=nx>end</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>          <span class=nx>snippetHighlights</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=nx>mvalue</span><span class=p>.</span><span class=nx>value</span><span class=p>.</span><span class=nx>substring</span><span class=p>(</span><span class=nx>mvalue</span><span class=p>.</span><span class=nx>indices</span><span class=p>[</span><span class=mi>0</span><span class=p>][</span><span class=mi>0</span><span class=p>],</span><span class=nx>mvalue</span><span class=p>.</span><span class=nx>indices</span><span class=p>[</span><span class=mi>0</span><span class=p>][</span><span class=mi>1</span><span class=p>]</span><span class=o>-</span><span class=nx>mvalue</span><span class=p>.</span><span class=nx>indices</span><span class=p>[</span><span class=mi>0</span><span class=p>][</span><span class=mi>0</span><span class=p>]</span><span class=o>+</span><span class=mi>1</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>      <span class=p>});</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=nx>snippet</span><span class=p>.</span><span class=nx>length</span><span class=o>&lt;</span><span class=mi>1</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>      <span class=nx>snippet</span> <span class=o>+=</span> <span class=nx>contents</span><span class=p>.</span><span class=nx>substring</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span><span class=nx>summaryInclude</span><span class=o>*</span><span class=mi>2</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//pull template from hugo templarte definition
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kd>var</span> <span class=nx>templateDefinition</span> <span class=o>=</span> <span class=nx>$</span><span class=p>(</span><span class=s1>&#39;#search-result-template&#39;</span><span class=p>).</span><span class=nx>html</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//replace values
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kd>var</span> <span class=nx>output</span> <span class=o>=</span> <span class=nx>render</span><span class=p>(</span><span class=nx>templateDefinition</span><span class=p>,{</span><span class=nx>key</span><span class=o>:</span><span class=nx>key</span><span class=p>,</span><span class=nx>title</span><span class=o>:</span><span class=nx>value</span><span class=p>.</span><span class=nx>item</span><span class=p>.</span><span class=nx>title</span><span class=p>,</span><span class=nx>link</span><span class=o>:</span><span class=nx>value</span><span class=p>.</span><span class=nx>item</span><span class=p>.</span><span class=nx>permalink</span><span class=p>,</span><span class=nx>tags</span><span class=o>:</span><span class=nx>value</span><span class=p>.</span><span class=nx>item</span><span class=p>.</span><span class=nx>tags</span><span class=p>,</span><span class=nx>categories</span><span class=o>:</span><span class=nx>value</span><span class=p>.</span><span class=nx>item</span><span class=p>.</span><span class=nx>categories</span><span class=p>,</span><span class=nx>snippet</span><span class=o>:</span><span class=nx>snippet</span><span class=p>});</span>
+</span></span><span class=line><span class=cl>    <span class=nx>$</span><span class=p>(</span><span class=s1>&#39;#search-results&#39;</span><span class=p>).</span><span class=nx>append</span><span class=p>(</span><span class=nx>output</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nx>$</span><span class=p>.</span><span class=nx>each</span><span class=p>(</span><span class=nx>snippetHighlights</span><span class=p>,</span><span class=kd>function</span><span class=p>(</span><span class=nx>snipkey</span><span class=p>,</span><span class=nx>snipvalue</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>      <span class=nx>$</span><span class=p>(</span><span class=s2>&#34;#summary-&#34;</span><span class=o>+</span><span class=nx>key</span><span class=p>).</span><span class=nx>mark</span><span class=p>(</span><span class=nx>snipvalue</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>param</span><span class=p>(</span><span class=nx>name</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nb>decodeURIComponent</span><span class=p>((</span><span class=nx>location</span><span class=p>.</span><span class=nx>search</span><span class=p>.</span><span class=nx>split</span><span class=p>(</span><span class=nx>name</span> <span class=o>+</span> <span class=s1>&#39;=&#39;</span><span class=p>)[</span><span class=mi>1</span><span class=p>]</span> <span class=o>||</span> <span class=s1>&#39;&#39;</span><span class=p>).</span><span class=nx>split</span><span class=p>(</span><span class=s1>&#39;&amp;&#39;</span><span class=p>)[</span><span class=mi>0</span><span class=p>]).</span><span class=nx>replace</span><span class=p>(</span><span class=sr>/\+/g</span><span class=p>,</span> <span class=s1>&#39; &#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>render</span><span class=p>(</span><span class=nx>templateString</span><span class=p>,</span> <span class=nx>data</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>var</span> <span class=nx>conditionalMatches</span><span class=p>,</span><span class=nx>conditionalPattern</span><span class=p>,</span><span class=nx>copy</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>conditionalPattern</span> <span class=o>=</span> <span class=sr>/\$\{\s*isset ([a-zA-Z]*) \s*\}(.*)\$\{\s*end\s*}/g</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=c1>//since loop below depends on re.lastInxdex, we use a copy to capture any manipulations whilst inside the loop
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>copy</span> <span class=o>=</span> <span class=nx>templateString</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=k>while</span> <span class=p>((</span><span class=nx>conditionalMatches</span> <span class=o>=</span> <span class=nx>conditionalPattern</span><span class=p>.</span><span class=nx>exec</span><span class=p>(</span><span class=nx>templateString</span><span class=p>))</span> <span class=o>!==</span> <span class=kc>null</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=nx>data</span><span class=p>[</span><span class=nx>conditionalMatches</span><span class=p>[</span><span class=mi>1</span><span class=p>]]){</span>
+</span></span><span class=line><span class=cl>      <span class=c1>//valid key, remove conditionals, leave contents.
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=nx>copy</span> <span class=o>=</span> <span class=nx>copy</span><span class=p>.</span><span class=nx>replace</span><span class=p>(</span><span class=nx>conditionalMatches</span><span class=p>[</span><span class=mi>0</span><span class=p>],</span><span class=nx>conditionalMatches</span><span class=p>[</span><span class=mi>2</span><span class=p>]);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span><span class=k>else</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=c1>//not valid, remove entire section
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=nx>copy</span> <span class=o>=</span> <span class=nx>copy</span><span class=p>.</span><span class=nx>replace</span><span class=p>(</span><span class=nx>conditionalMatches</span><span class=p>[</span><span class=mi>0</span><span class=p>],</span><span class=s1>&#39;&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=nx>templateString</span> <span class=o>=</span> <span class=nx>copy</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=c1>//now any conditionals removed we can do simple substitution
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kd>var</span> <span class=nx>key</span><span class=p>,</span> <span class=nx>find</span><span class=p>,</span> <span class=nx>re</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=k>for</span> <span class=p>(</span><span class=nx>key</span> <span class=k>in</span> <span class=nx>data</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>find</span> <span class=o>=</span> <span class=s1>&#39;\\$\\{\\s*&#39;</span> <span class=o>+</span> <span class=nx>key</span> <span class=o>+</span> <span class=s1>&#39;\\s*\\}&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>re</span> <span class=o>=</span> <span class=k>new</span> <span class=nb>RegExp</span><span class=p>(</span><span class=nx>find</span><span class=p>,</span> <span class=s1>&#39;g&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nx>templateString</span> <span class=o>=</span> <span class=nx>templateString</span><span class=p>.</span><span class=nx>replace</span><span class=p>(</span><span class=nx>re</span><span class=p>,</span> <span class=nx>data</span><span class=p>[</span><span class=nx>key</span><span class=p>]);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=nx>templateString</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=configtoml-配置><code>config.toml</code> 配置</h3><p>在博客配置文件 <code>config.toml</code> 添加以下配置：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-4-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-1>1</a>
+</span><span class=lnt id=hl-4-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-4-2>2</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=line><span class=cl><span class=p>[</span><span class=nx>outputs</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=nx>home</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;HTML&#34;</span><span class=p>,</span> <span class=s2>&#34;RSS&#34;</span><span class=p>,</span> <span class=s2>&#34;JSON&#34;</span><span class=p>]</span>
+</span></span></code></pre></td></tr></table></div></div><p>这样 <code>Fuse</code> 所有配置就已经完成了，使用命令 <code>hugo server</code> 就可以看到效果了。是不是非常简单？</p><h2 id=成果展示>成果展示</h2><p>搜索页面：</p><p><img src=/image/2022/10/06_01_fuse_search_1.png alt=fuse_search></p><p>搜索中文 <code>博客</code> 结果：</p><p><img src=/image/2022/10/06_02_fuse_search_2.png alt=fuse_search></p><h2 id=参考资源>参考资源</h2><p><a href=https://github.com/krisk/Fuse>https://github.com/krisk/Fuse</a></p><p><a href=https://fusejs.io/>fuzzy searching document</a></p><p><a href=https://gist.github.com/eddiewebb/735feb48f50f0ddd65ae5606a1cb41ae>Client side searching for Hugo.io with Fuse.js</a></p><p><a href=https://gist.github.com/onegit20/db426ec7c90c545391168a12ebadbd4e>Hugo JS Searching with Fuse.js</a></p></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
+<span class=item-content>卢达</span></p><p class=copyright-item><span class=item-title>上次更新</span>
+<span class=item-content>2022-10-06
+<a href=https://github.com/ludard/hugo-blog-code/commit/e87f1ab4f3b98830fd2ba35efe88c2290917cc24 title="add feature: search">(e87f1ab)</a></span></p><p class=copyright-item><span class=item-title>许可协议</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh target=_blank>署名-非商业性使用-禁止演绎 4.0 国际许可协议（CC BY-NC-ND 4.0）</a></span></p></div><footer class=post-footer><div class=post-tags><a href=http://ludard.com/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/>博客搭建</a>
+<a href=http://ludard.com/tags/hugo/>Hugo</a>
+<a href=http://ludard.com/tags/fuse/>Fuse</a></div><nav class=post-nav><a class=next href=/post/tech/create-blog-step-by-step-4/><span class="next-text nav-default">「Hugo 博客搭建」4.添加博客评论系统</span>
+<span class="prev-text nav-mobile">下一篇</span>
+<i class=iconfont><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18"><path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697c-11.777231-11.500939-30.216186-10.304694-41.178865 2.712784z"/></svg></i></a></nav></footer></article><div class="post bg-white"><script src=https://giscus.app/client.js data-repo=ludard/comments-for-blog data-repo-id=R_kgDOIE30_g data-category=Announcements data-category-id=DIC_kwDOIE30_s4CRp_x data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=top data-theme=light_tritanopia data-lang=zh-CN crossorigin=anonymous async></script></div></div></div></main><footer id=footer class=footer><div class=icon-links><a href=mailto:ludard@outlook.com rel="me noopener" class=iconfont title=email><svg class="icon" viewBox="0 0 1451 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36"><path d="M664.781909 681.472759.0 97.881301C0 3.997201 71.046997.0 71.046997.0H474.477909 961.649408h399.992405s71.046998 3.997201 71.046998 97.881301L771.345323 681.472759S764.482731 685.154773 753.594283 688.65053V688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858V688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759zm53.281707 130.131124C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633.0 212.052267.0 212.052267V942.809523S0 1024 83.726336 1024H682.532949 753.579947h595.368192C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523V212.052267S893.138176 701.759633 817.019477 767.734955c-39.771477 34.470494-74.671786 43.295855-98.955861 43.868928z"/></svg></a><a href=https://github.com/ludard rel="me noopener" class=iconfont title=github target=_blank><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36"><path d="M512 12.672c-282.88.0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667.0-12.16-.426667-44.373333-.64-87.04C242.005334 929.664 211.968 830.08 211.968 830.08 188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333.0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333.0.0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667.0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72.0 68.522667-.64 123.562667-.64 140.202666.0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"/></svg></a><a href=http://ludard.com/index.xml rel="noopener alternate" type=application/rss+xml class=iconfont title=rss target=_blank><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30"><path d="M819.157333 1024C819.157333 574.592 449.408 204.8.0 204.8V0c561.706667.0 1024 462.293333 1024 1024H819.157333zM140.416 743.04a140.8 140.8.0 01140.501333 140.586667A140.928 140.928.0 01140.074667 1024C62.72 1024 0 961.109333.0 883.626667S62.933333 743.082667 140.416 743.04zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667v-199.04c372.352.0 678.784 306.517333 678.784 678.826667z"/></svg></a></div><div class=copyright><span class=power-by>Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a></span>
+<span class=division>|</span>
+<span class=theme-info>Theme - <a class=theme-link href=https://github.com/xianmin/hugo-theme-jane>Jane</a></span>
+<span class=copyright-year>&copy;
+2022
+<span class=heart><i class=iconfont><svg class="icon" viewBox="0 0 1025 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="14"><path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7.0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1.0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2.0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3.1-42.5-8-83.6-24-122.2z" fill="#8a8a8a"/></svg></i></span><span class=author>卢达</span></span>
+<span id=busuanzi_container>访客数/访问量：<span id=busuanzi_value_site_uv></span>/<span id=busuanzi_value_site_pv></span></span></div></footer><div class=back-to-top id=back-to-top><i class=iconfont><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35" height="35"><path d="M510.866688 227.694839 95.449397 629.218702h235.761562L329.15309 958.01517h362.40389L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777h894.052392v131.813095H63.840492V63.962777zm0 0"/></svg></i></div></div><script type=text/javascript src=/lib/jquery/jquery-3.2.1.min.js></script>
+<script type=text/javascript src=/lib/slideout/slideout-1.0.1.min.js></script>
+<script type=text/javascript src=/js/main.fe83e11b4fbc9193d67e2c9db78bad21f8dc59fca0cacd8c1c3bb071bb16a852.js integrity="sha256-/oPhG0+8kZPWfiydt4utIfjcWfygys2MHDuwcbsWqFI=" crossorigin=anonymous></script>
+<script type=text/javascript>window.MathJax={showProcessingMessages:!1,messageStyle:"none"}</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+<script type=text/javascript src=/js/load-photoswipe.js></script>
+<script type=text/javascript src=/lib/photoswipe/photoswipe.min.js></script>
+<script type=text/javascript src=/lib/photoswipe/photoswipe-ui-default.min.js></script>
+<script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script></body></html>
