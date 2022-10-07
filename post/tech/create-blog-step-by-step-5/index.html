@@ -1,4 +1,4 @@
-<!doctype html><html lang=zh itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><title>「Hugo 博客搭建」5.添加全文搜索 - 卢达的技术博客 - 专注于C#|Go|DevOps|运维开发</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,user-scalable=yes"><meta name=MobileOptimized content="width"><meta name=HandheldFriendly content="true"><meta name=applicable-device content="pc,mobile"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=mobile-web-app-capable content="yes"><meta name=author content="卢达"><meta name=description content="给博客添加全文搜索功能"><meta name=keywords content="hugo,博客搭建,blog,Fuse"><meta name=generator content="Hugo 0.104.3"><link rel=canonical href=http://ludard.com/post/tech/create-blog-step-by-step-5/><link rel=icon href=/favicon.ico><link rel=stylesheet href=/sass/jane.min.6aa088348d86326ca4be4205ae9973752a42b2e758c2f5f879a69172441859c9.css integrity="sha256-aqCINI2GMmykvkIFrplzdSpCsudYwvX4eaaRckQYWck=" media=screen crossorigin=anonymous><link rel=stylesheet href=/css/revise-style.css><link rel=stylesheet href=/css/manni-code-syntax.css><meta property="og:title" content="「Hugo 博客搭建」5.添加全文搜索"><meta property="og:description" content="给博客添加全文搜索功能"><meta property="og:type" content="article"><meta property="og:url" content="http://ludard.com/post/tech/create-blog-step-by-step-5/"><meta property="article:section" content="post"><meta property="article:published_time" content="2022-10-06T21:00:31+08:00"><meta property="article:modified_time" content="2022-10-06T22:20:54+08:00"><meta itemprop=name content="「Hugo 博客搭建」5.添加全文搜索"><meta itemprop=description content="给博客添加全文搜索功能"><meta itemprop=datePublished content="2022-10-06T21:00:31+08:00"><meta itemprop=dateModified content="2022-10-06T22:20:54+08:00"><meta itemprop=wordCount content="1816"><meta itemprop=keywords content="博客搭建,Hugo,Fuse,"><meta name=twitter:card content="summary"><meta name=twitter:title content="「Hugo 博客搭建」5.添加全文搜索"><meta name=twitter:description content="给博客添加全文搜索功能"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<!doctype html><html lang=zh itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><title>「Hugo 博客搭建」5.添加全文搜索 - 卢达的技术博客 - 专注于C#|Go|DevOps|运维开发</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,user-scalable=yes"><meta name=MobileOptimized content="width"><meta name=HandheldFriendly content="true"><meta name=applicable-device content="pc,mobile"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=mobile-web-app-capable content="yes"><meta name=author content="卢达"><meta name=description content="给博客添加全文搜索功能"><meta name=keywords content="hugo,博客搭建,blog,Fuse"><meta name=generator content="Hugo 0.104.3"><link rel=canonical href=http://ludard.com/post/tech/create-blog-step-by-step-5/><link rel=icon href=/favicon.ico><link rel=stylesheet href=/sass/jane.min.6aa088348d86326ca4be4205ae9973752a42b2e758c2f5f879a69172441859c9.css integrity="sha256-aqCINI2GMmykvkIFrplzdSpCsudYwvX4eaaRckQYWck=" media=screen crossorigin=anonymous><link rel=stylesheet href=/css/revise-style.css><link rel=stylesheet href=/css/manni-code-syntax.css><meta property="og:title" content="「Hugo 博客搭建」5.添加全文搜索"><meta property="og:description" content="给博客添加全文搜索功能"><meta property="og:type" content="article"><meta property="og:url" content="http://ludard.com/post/tech/create-blog-step-by-step-5/"><meta property="article:section" content="post"><meta property="article:published_time" content="2022-10-06T21:00:31+08:00"><meta property="article:modified_time" content="2022-10-07T18:44:55+08:00"><meta itemprop=name content="「Hugo 博客搭建」5.添加全文搜索"><meta itemprop=description content="给博客添加全文搜索功能"><meta itemprop=datePublished content="2022-10-06T21:00:31+08:00"><meta itemprop=dateModified content="2022-10-07T18:44:55+08:00"><meta itemprop=wordCount content="1984"><meta itemprop=keywords content="博客搭建,Hugo,Fuse,"><meta name=twitter:card content="summary"><meta name=twitter:title content="「Hugo 博客搭建」5.添加全文搜索"><meta name=twitter:description content="给博客添加全文搜索功能"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>卢达的博客</a></div><div class=mobile-navbar-icon><span></span>
 <span></span>
 <span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><li class=mobile-menu-item><a class=menu-item-link href=http://ludard.com/>主页</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://ludard.com/post/>文章列表</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://ludard.com/tags/>标签</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://ludard.com/categories/>分类</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://ludard.com/about/>关于</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://ludard.com/search/>🔍搜索</a></li></ul></nav><link rel=stylesheet href=/lib/photoswipe/photoswipe.min.css><link rel=stylesheet href=/lib/photoswipe/default-skin/default-skin.min.css><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
@@ -38,7 +38,7 @@
 </span></span><span class=line><span class=cl>Setting a very low sitemap priority will tell search engines this is not important content.
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>This implementation uses Fusejs, jquery and mark.js
-</span></span></code></pre></td></tr></table></div></div><h3 id=搜索页面>搜索页面</h3><p><code>themes/jane/layouts/_default/search.html</code> 搜索页面</p><p>为了搜索页面和博客文章风格保持一致，所以定制了一些样式。如果想定制可以参考同目录下 <code>baseof.html</code> 文件的格式。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-1-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-1>  1</a>
+</span></span></code></pre></td></tr></table></div></div><h3 id=搜索页面>搜索页面</h3><p><code>themes/jane/layouts/_default/search.html</code> 搜索页面</p><p>我定制的搜索页面有以下功能：</p><ol><li>页面自适应布局，已适配手机、平板、PC屏幕</li><li>和博客文章风格保持一致，上面是菜单，下面是页脚，中间是搜索结果。</li></ol><p>如果想定制可以参考同目录下 <code>baseof.html</code> 文件的格式。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt id=hl-1-1><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-1>  1</a>
 </span><span class=lnt id=hl-1-2><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-2>  2</a>
 </span><span class=lnt id=hl-1-3><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-3>  3</a>
 </span><span class=lnt id=hl-1-4><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-4>  4</a>
@@ -149,6 +149,45 @@
 </span><span class=lnt id=hl-1-109><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-109>109</a>
 </span><span class=lnt id=hl-1-110><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-110>110</a>
 </span><span class=lnt id=hl-1-111><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-111>111</a>
+</span><span class=lnt id=hl-1-112><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-112>112</a>
+</span><span class=lnt id=hl-1-113><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-113>113</a>
+</span><span class=lnt id=hl-1-114><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-114>114</a>
+</span><span class=lnt id=hl-1-115><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-115>115</a>
+</span><span class=lnt id=hl-1-116><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-116>116</a>
+</span><span class=lnt id=hl-1-117><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-117>117</a>
+</span><span class=lnt id=hl-1-118><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-118>118</a>
+</span><span class=lnt id=hl-1-119><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-119>119</a>
+</span><span class=lnt id=hl-1-120><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-120>120</a>
+</span><span class=lnt id=hl-1-121><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-121>121</a>
+</span><span class=lnt id=hl-1-122><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-122>122</a>
+</span><span class=lnt id=hl-1-123><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-123>123</a>
+</span><span class=lnt id=hl-1-124><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-124>124</a>
+</span><span class=lnt id=hl-1-125><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-125>125</a>
+</span><span class=lnt id=hl-1-126><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-126>126</a>
+</span><span class=lnt id=hl-1-127><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-127>127</a>
+</span><span class=lnt id=hl-1-128><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-128>128</a>
+</span><span class=lnt id=hl-1-129><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-129>129</a>
+</span><span class=lnt id=hl-1-130><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-130>130</a>
+</span><span class=lnt id=hl-1-131><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-131>131</a>
+</span><span class=lnt id=hl-1-132><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-132>132</a>
+</span><span class=lnt id=hl-1-133><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-133>133</a>
+</span><span class=lnt id=hl-1-134><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-134>134</a>
+</span><span class=lnt id=hl-1-135><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-135>135</a>
+</span><span class=lnt id=hl-1-136><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-136>136</a>
+</span><span class=lnt id=hl-1-137><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-137>137</a>
+</span><span class=lnt id=hl-1-138><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-138>138</a>
+</span><span class=lnt id=hl-1-139><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-139>139</a>
+</span><span class=lnt id=hl-1-140><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-140>140</a>
+</span><span class=lnt id=hl-1-141><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-141>141</a>
+</span><span class=lnt id=hl-1-142><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-142>142</a>
+</span><span class=lnt id=hl-1-143><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-143>143</a>
+</span><span class=lnt id=hl-1-144><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-144>144</a>
+</span><span class=lnt id=hl-1-145><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-145>145</a>
+</span><span class=lnt id=hl-1-146><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-146>146</a>
+</span><span class=lnt id=hl-1-147><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-147>147</a>
+</span><span class=lnt id=hl-1-148><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-148>148</a>
+</span><span class=lnt id=hl-1-149><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-149>149</a>
+</span><span class=lnt id=hl-1-150><a style=outline:none;text-decoration:none;color:inherit href=#hl-1-150>150</a>
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>script</span> <span class=na>src</span><span class=o>=</span><span class=s>&#34;https://code.jquery.com/jquery-3.3.1.min.js&#34;</span><span class=p>&gt;&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
 </span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>script</span> <span class=na>src</span><span class=o>=</span><span class=s>&#34;https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.0/fuse.min.js&#34;</span><span class=p>&gt;&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
 </span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>script</span> <span class=na>src</span><span class=o>=</span><span class=s>&#34;https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js&#34;</span><span class=p>&gt;&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
@@ -164,17 +203,54 @@
 </span></span><span class=line><span class=cl>  {{ partial &#34;head.html&#34; . }}
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>style</span> <span class=na>type</span><span class=o>=</span><span class=s>&#34;text/css&#34;</span><span class=p>&gt;</span>
-</span></span><span class=line><span class=cl>    <span class=p>.</span><span class=nc>search-container</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>      <span class=k>padding</span><span class=p>:</span> <span class=mi>3</span><span class=kt>em</span> <span class=mi>5</span><span class=kt>em</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>      <span class=k>margin</span><span class=p>:</span> <span class=mi>0</span> <span class=mi>5</span><span class=kt>em</span> <span class=mi>3</span><span class=kt>em</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>      <span class=k>background-color</span><span class=p>:</span> <span class=mh>#fff</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>@</span><span class=k>media</span> <span class=o>(</span><span class=nt>max-width</span><span class=o>:</span> <span class=nt>425px</span><span class=o>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=c>/*0~425*/</span>
+</span></span><span class=line><span class=cl>        <span class=p>.</span><span class=nc>search-container</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>padding</span><span class=p>:</span> <span class=mi>3</span><span class=kt>em</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=k>margin</span><span class=p>:</span> <span class=mi>0</span> <span class=mi>0</span> <span class=mi>1</span><span class=kt>em</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=k>background-color</span><span class=p>:</span> <span class=mh>#fff</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=k>font-size</span><span class=p>:</span> <span class=mi>11</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=k>font-weight</span><span class=p>:</span> <span class=mi>200</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=p>#</span><span class=nn>search-box</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>width</span><span class=p>:</span> <span class=mi>85</span><span class=kt>%</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=k>height</span><span class=p>:</span> <span class=mi>25</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=k>border</span><span class=p>:</span> <span class=mi>2</span><span class=kt>px</span> <span class=kc>solid</span> <span class=mh>#e58f38</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=k>margin</span><span class=p>:</span> <span class=kc>auto</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>    <span class=p>#</span><span class=nn>search-box</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>      <span class=k>width</span><span class=p>:</span><span class=mi>71</span><span class=kt>%</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>      <span class=k>height</span><span class=p>:</span><span class=mi>40</span><span class=kt>px</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>      <span class=k>border</span><span class=p>:</span><span class=mi>2</span><span class=kt>px</span> <span class=kc>solid</span> <span class=mh>#E58F38</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>      <span class=k>margin</span><span class=p>:</span><span class=kc>auto</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>@</span><span class=k>media</span> <span class=o>(</span><span class=nt>min-width</span><span class=o>:</span> <span class=nt>426px</span><span class=o>)</span> <span class=nt>and</span> <span class=o>(</span><span class=nt>max-width</span><span class=o>:</span> <span class=nt>768px</span><span class=o>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=c>/*426~768*/</span>
+</span></span><span class=line><span class=cl>        <span class=p>.</span><span class=nc>search-container</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>padding</span><span class=p>:</span> <span class=mi>3</span><span class=kt>em</span> <span class=mi>2</span><span class=kt>em</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=k>margin</span><span class=p>:</span> <span class=mi>0</span> <span class=mi>2</span><span class=kt>em</span> <span class=mf>1.5</span><span class=kt>em</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=k>background-color</span><span class=p>:</span> <span class=mh>#fff</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=p>#</span><span class=nn>search-box</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>width</span><span class=p>:</span> <span class=mi>80</span><span class=kt>%</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=k>height</span><span class=p>:</span> <span class=mi>40</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=k>border</span><span class=p>:</span> <span class=mi>2</span><span class=kt>px</span> <span class=kc>solid</span> <span class=mh>#e58f38</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=k>margin</span><span class=p>:</span> <span class=kc>auto</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=p>@</span><span class=k>media</span> <span class=o>(</span><span class=nt>min-width</span><span class=o>:</span> <span class=nt>769px</span><span class=o>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=c>/*769~+∞*/</span>
+</span></span><span class=line><span class=cl>      <span class=p>.</span><span class=nc>search-container</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>padding</span><span class=p>:</span> <span class=mi>3</span><span class=kt>em</span> <span class=mi>5</span><span class=kt>em</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=k>margin</span><span class=p>:</span> <span class=mi>0</span> <span class=mi>5</span><span class=kt>em</span> <span class=mi>3</span><span class=kt>em</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=k>background-color</span><span class=p>:</span> <span class=mh>#fff</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>      <span class=p>#</span><span class=nn>search-box</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>width</span><span class=p>:</span><span class=mi>71</span><span class=kt>%</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=k>height</span><span class=p>:</span><span class=mi>40</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=k>border</span><span class=p>:</span><span class=mi>2</span><span class=kt>px</span> <span class=kc>solid</span> <span class=mh>#E58F38</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=k>margin</span><span class=p>:</span><span class=kc>auto</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=p>#</span><span class=nn>search-query</span> <span class=p>{</span>
@@ -246,6 +322,8 @@
 </span></span><span class=line><span class=cl>      <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
 </span></span><span class=line><span class=cl>    <span class=p>&lt;/</span><span class=nt>section</span><span class=p>&gt;</span>
 </span></span><span class=line><span class=cl>  <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>{{ partial &#34;scripts.html&#34; . }}
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=c>&lt;!-- this template is sucked in by search.js and appended to the search-results div above. So editing here will adjust style --&gt;</span>
 </span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>script</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;search-result-template&#34;</span> <span class=na>type</span><span class=o>=</span><span class=s>&#34;text/x-js-template&#34;</span><span class=p>&gt;</span>
@@ -492,8 +570,8 @@
 </span></span><span class=line><span class=cl>  <span class=nx>home</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;HTML&#34;</span><span class=p>,</span> <span class=s2>&#34;RSS&#34;</span><span class=p>,</span> <span class=s2>&#34;JSON&#34;</span><span class=p>]</span>
 </span></span></code></pre></td></tr></table></div></div><p>这样 <code>Fuse</code> 所有配置就已经完成了，使用命令 <code>hugo server</code> 就可以看到效果了。是不是非常简单？</p><h2 id=成果展示>成果展示</h2><p>搜索页面：</p><p><img src=/image/2022/10/06_01_fuse_search_1.png alt=fuse_search></p><p>搜索中文 <code>博客</code> 结果：</p><p><img src=/image/2022/10/06_02_fuse_search_2.png alt=fuse_search></p><h2 id=参考资源>参考资源</h2><p><a href=https://github.com/krisk/Fuse>https://github.com/krisk/Fuse</a></p><p><a href=https://fusejs.io/>fuzzy searching document</a></p><p><a href=https://gist.github.com/eddiewebb/735feb48f50f0ddd65ae5606a1cb41ae>Client side searching for Hugo.io with Fuse.js</a></p><p><a href=https://gist.github.com/onegit20/db426ec7c90c545391168a12ebadbd4e>Hugo JS Searching with Fuse.js</a></p></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
 <span class=item-content>卢达</span></p><p class=copyright-item><span class=item-title>上次更新</span>
-<span class=item-content>2022-10-06
-<a href=https://github.com/ludard/hugo-blog-code/commit/98cb786c819573fc8aeb94f68dea47185e912df1 title="modify search content">(98cb786)</a></span></p><p class=copyright-item><span class=item-title>许可协议</span>
+<span class=item-content>2022-10-07
+<a href=https://github.com/ludard/hugo-blog-code/commit/0ce41c158ad17dc130b14957abf1dceb4bc77e45 title="Search Page Adapted to phones">(0ce41c1)</a></span></p><p class=copyright-item><span class=item-title>许可协议</span>
 <span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh target=_blank>署名-非商业性使用-禁止演绎 4.0 国际许可协议（CC BY-NC-ND 4.0）</a></span></p></div><footer class=post-footer><div class=post-tags><a href=http://ludard.com/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/>博客搭建</a>
 <a href=http://ludard.com/tags/hugo/>Hugo</a>
 <a href=http://ludard.com/tags/fuse/>Fuse</a></div><nav class=post-nav><a class=next href=/post/tech/create-blog-step-by-step-4/><span class="next-text nav-default">「Hugo 博客搭建」4.添加博客评论系统</span>
