@@ -2,7 +2,8 @@
 &lt;ul>
 &lt;li>&lt;a href="https://docs.meilisearch.com/">Meilisearch&lt;/a> 免费开源、快速准确、支持中文、使用简单的搜索引擎，如果有服务器非常推荐。&lt;/li>
 &lt;li>&lt;a href="https://www.algolia.com/">algolia&lt;/a> 商业软件，每月免费一万次搜索。适用于小型博客&lt;/li>
-&lt;li>&lt;a href="https://github.com/krisk/Fuse">Fuse&lt;/a> 轻量级的模糊搜索JS库&lt;/li>
+&lt;li>&lt;a href="https://github.com/krisk/Fuse">Fuse&lt;/a> 非常轻量级的模糊搜索JS库&lt;/li>
+&lt;li>&lt;a href="https://pagefind.app/">Pagefind&lt;/a> 静态全文搜索工具，通过 &lt;a href="https://www.npmjs.com/package/pagefind">wrapper package through npm&lt;/a> 生成索引文件&lt;/li>
 &lt;/ul></description></item><item><title>「Hugo 博客搭建」4.添加博客评论系统</title><link>http://ludard.com/post/tech/create-blog-step-by-step-4/</link><pubDate>Tue, 27 Sep 2022 21:41:16 +0800</pubDate><guid>http://ludard.com/post/tech/create-blog-step-by-step-4/</guid><description>&lt;p>经过几期的搭建，博客已经完全正常运行了。是时候给博客添加评论系统了，评论系统有以下好处：&lt;/p>
 &lt;ul>
 &lt;li>文章有不通顺的地方，比如有错别字、敏感字、配图错误等，读者可以指出来有利于提高文章质量&lt;/li>
